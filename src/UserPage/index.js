@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from '../firebase.js';
+// import firebase from '../firebase.js';
 
 function UserPage(props) {
 	// console.log(props, " this is props")

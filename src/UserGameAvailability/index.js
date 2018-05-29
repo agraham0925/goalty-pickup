@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
-// import firebase from '../firebase.js';
+import firebase from '../firebase.js';
 
 class UserGameAvailability extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: '',
+			user: 'mace',
 			responses: []
 		}
 		this.checkItem = this.checkItem.bind(this);
@@ -26,10 +26,57 @@ class UserGameAvailability extends Component {
 		e.preventDefault();
 
 		//add responses that are saved in state to the database
-			//users.responses
-			console.log(this.state.responses, ' this is this.state.responses')
-			//games
 
+		//users.responses
+
+		//games
+
+		const gamesRef = firebase.database().ref('Games');
+
+		gamesRef.on('value', function(snapshot){
+      		gamesRef.innerText = snapshot.val();
+
+      		return gamesRef.innerText
+      		// console.log(gamesRef.innerText, " this is the gamesRef in firebase")
+    	});
+
+    	function snapshotToArray(snapshot) {
+    		const returnArr = [];
+
+    		snapshot.forEach(function(childSnapshot) {
+    			const item = childSnapshot.val();
+
+    			item.key = childSnapshot.key;
+
+    			returnArr.push(item);
+    		})
+
+    		return returnArr
+    	}
+
+    	firebase.database().ref('Games').on('value', function(snapshot) {
+    		console.log(snapshotToArray(snapshot), ' this is snapshotToArray');
+
+    		snapshotToArray(snapshot).map((gameFirebase) => {
+    			console.log(gameFirebase.key, " this is snapshot key")
+    		})
+		});
+
+    	// const gamesFirebase = gamesRef.map((gameFirebase) => {
+    	// 	console.log(gameFirebase, " this is gameFirebase")
+    	// })
+
+  //   	const games = this.state.responses.map((game) => {
+  //   		console.log(game, " this is game")
+  //   		console.log(gamesRef, " this is gamesRef")
+  //   		if(game === gamesRef.innerText) {
+  //   			console.log(game + ' and ' + gamesRef.innerText + " are the same game")
+  //   		} else {
+  //   			console.log("game not found")
+  //   		}
+		// })
+
+		// console.log(games, " this is games")
 	}
 
 	render() {
