@@ -8,44 +8,28 @@ class UserGameAvailability extends Component {
 			user: '',
 			responses: []
 		}
-	}
-
-	handleSubmit(e){
-		e.preventDefault();
-
-		console.log(e.currentTarget.input, " this is e.currentTarget.input")
-
-		// if( == "on"){
-		// 	games.SOMETHING.USER = true;
-		// } else games.SOMETHING.USER = false;
-
-		
-  //   		{
-  //       		console.log("Checkbox with name = " + oCheckbox.name + " and value =" +
-  //               checkbox_val + " is checked");
-  //   		}
-  //   		else
-  //   		{
-  //       		console.log("Checkbox with name = " + oCheckbox.name + " and value =" +
-  //             	checkbox_val + " is not checked");
-  //   		}
-		// }
-
-
-		// const gamesDB = firebase.database().ref('games');
-		// const game = {
-
-		// }
-
-		//if box checked add user name to game.users object
-		//add all responses T/F to users.responses
+		this.checkItem = this.checkItem.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	checkItem(e) {
-		console.log(e, ' this is e from checkItem')
-
+		//getting the value of the checkbox, which is listed as the specific game
 		const park = e.currentTarget.value
 
-		console.log(park, " this is value from checkItem")
+		//adding each game that user is available to responses state
+		this.state.responses.push(park)
+
+		// console.log(park, " this is value from checkItem")
+		// console.log(this.state.responses, " this is the state of responses")
+	}
+
+	handleSubmit(e, park){
+		e.preventDefault();
+
+		//add responses that are saved in state to the database
+			//users.responses
+			console.log(this.state.responses, ' this is this.state.responses')
+			//games
+
 	}
 
 	render() {
@@ -77,8 +61,8 @@ class UserGameAvailability extends Component {
 					<input type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
 					<label for="humboldt_1"> Saturday 12pm </label>
 					<input type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
-					<label for="humboldt_2"> Satugamerday 1pm </label>
-					<input type="checkbox" name="" value="humboldt_3" onChange={this.checkItem}/>
+					<label for="humboldt_2"> Saturday 1pm </label>
+					<input type="checkbox" name="game" value="humboldt_3" onChange={this.checkItem}/>
 					<label for="humboldt_3"> Sunday 12pm </label>
 					<input type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
 					<label for="humboldt_4"> Sunday 1pm </label>
