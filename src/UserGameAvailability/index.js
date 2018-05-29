@@ -40,40 +40,47 @@ class UserGameAvailability extends Component {
 		//if box checked add user name to game.users object
 		//add all responses T/F to users.responses
 	}
+	checkItem(e) {
+		console.log(e, ' this is e from checkItem')
+
+		const park = e.currentTarget.value
+
+		console.log(park, " this is value from checkItem")
+	}
 
 	render() {
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<div>
 					Revere Park:
-						<input type="checkbox" name="game" value="revere_1" />
+						<input type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
 						<label for="revere_1"> Saturday 12pm </label>
-						<input type="checkbox" name="game" value="revere_2" />
+						<input type="checkbox" name="game" value="revere_2" onChange={this.checkItem} />
 						<label for="revere_2"> Saturday 1pm </label>
-						<input type="checkbox" name="game" value="revere_3" />
+						<input type="checkbox" name="game" value="revere_3" onChange={this.checkItem} />
 						<label for="revere_3"> Sunday 12pm </label>
-						<input type="checkbox" name="game" value="revere_4" />
+						<input type="checkbox" name="game" value="revere_4" onChange={this.checkItem} />
 						<label for="revere_4"> Sunday 1pm </label>
 					<br />
 					Eckhart Park:
-					<input type="checkbox" name="game" value="eckhart_1" />
+					<input type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
 					<label for="eckhart_1"> Saturday 12pm </label>
-					<input type="checkbox" name="game" value="eckhart_2" />
+					<input type="checkbox" name="game" value="eckhart_2" onChange={this.checkItem}/>
 					<label for="eckhart_2"> Saturday 1pm </label>
-					<input type="checkbox" name="game" value="eckhart_3" />
+					<input type="checkbox" name="game" value="eckhart_3" onChange={this.checkItem}/>
 					<label for="eckhart_3"> Sunday 12pm </label>
-					<input type="checkbox" name="game" value="eckhart_4" />
+					<input type="checkbox" name="game" value="eckhart_4" onChange={this.checkItem}/>
 					<label for="eckhart_4"> Sunday 1pm </label>
 		
 					<br />
 					Humboldt Park:
-					<input type="checkbox" name="game" value="humboldt_1"/>
+					<input type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
 					<label for="humboldt_1"> Saturday 12pm </label>
-					<input type="checkbox" name="game" value="humboldt_2"/>
+					<input type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
 					<label for="humboldt_2"> Satugamerday 1pm </label>
-					<input type="checkbox" name="" value="humboldt_3"/>
+					<input type="checkbox" name="" value="humboldt_3" onChange={this.checkItem}/>
 					<label for="humboldt_3"> Sunday 12pm </label>
-					<input type="checkbox" name="game" value="humboldt_4"/>
+					<input type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
 					<label for="humboldt_4"> Sunday 1pm </label>
 				</div>
 				<div>
