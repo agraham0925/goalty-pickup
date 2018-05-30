@@ -25,14 +25,12 @@ class UserGameAvailability extends Component {
 
     			returnArr.push(item);
     		})
-			console.log(returnArr, " this is returnArr")
     		return returnArr
     	}
 
-    	//getting each individual game in the Games object
+    	//getting each individual game in the Games object and storing in state
     	firebase.database().ref('Games').on('value', (snapshot) => {
     			const gamesArr = [];
-    		// console.log(snapshotToArray(snapshot), ' this is snapshotToArray');
 
     		const gamesFirebase = snapshotToArray(snapshot).map((gameFirebase) => {
     			const game = gameFirebase.key
@@ -40,13 +38,13 @@ class UserGameAvailability extends Component {
     			gamesArr.push(game)
     			return gamesArr
     		})
-    		console.log(gamesArr, " this is gamesArr")    		
+   		
     		this.setState({firebaseGames: gamesArr})
-			console.log(this.state, ' this is state inside gamesFirebase')
 		});
 
 		// console.log(this.state, ' this is state')
 	}
+
 	checkItem(e) {
 		//getting the value of the checkbox, which is listed as the specific game
 		const park = e.currentTarget.value
@@ -61,28 +59,42 @@ class UserGameAvailability extends Component {
 	handleSubmit(e, park){
 		e.preventDefault();
 
-		// const gamesRef = firebase.database().ref('Games');
-
-		// gamesRef.on('value', function(snapshot){
-  //     		gamesRef.innerText = snapshot.val();
-
-  //     		return gamesRef.innerText
-  //     		// console.log(gamesRef.innerText, " this is the gamesRef in firebase")
-  //   	});
-
     	//getting each game in the responses array
-    	const games = this.state.responses.map((game) => {
-    		console.log(game, " this is game")
-    		return game
-		})
+  //   	const games = this.state.responses.map((game) => {
+  //   		console.log(game, " this is game")
+  //   		return game
+		// })
 
-    	//IN PROGRESS - the below does not work. above each item is returned, but 
-    	//still working on trying to compare the two arrays
-		// if(games === gamesFirebase) {
-		// 	console.log(games + ' and ' + gamesFirebase + " are the same game")
-		// } else {
-  //   		console.log("game not found")
-  //   	}
+		const firebaseDB = this.state.firebaseGames
+		const userResponses = this.state.responses
+
+		// console.log(firebaseDB, ' this is firebaseDB')
+		// console.log(userResponses, ' this is userResponses')
+
+
+
+		// const filteredArr = firebaseDB.filter((game) => userResponses.includes(game));
+		// console.log(filteredArr, " this is filteredArr")
+
+		//connect to database
+    	// const gamesRef = firebase.database().ref('Games/');
+
+		// get each game on it's own
+
+    	//
+    	// const data = {
+    	// 	users: {
+    	// 		this.state.user: true
+    	// 	}
+    	// }
+    	
+    	// const game = {
+
+    	// }
+
+    	//add user: true data to each game
+		// gamesRef.child(gameId).update(data)
+
 	}
 
 	render() {
