@@ -6,10 +6,46 @@ class UserGameAvailability extends Component {
 		super(props);
 		this.state = {
 			user: 'mace',
+			firebaseGames: [],
 			responses: []
 		}
 		this.checkItem = this.checkItem.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	componentDidMount() {
+		//retrieving game data from Firebase and storing in an array
+    	function snapshotToArray(snapshot) {
+    		const returnArr = [];
+
+    		snapshot.forEach((childSnapshot) => {
+    			const item = childSnapshot.val();
+
+    			item.key = childSnapshot.key;
+
+    			returnArr.push(item);
+    		})
+			console.log(returnArr, " this is returnArr")
+    		return returnArr
+    	}
+
+    	//getting each individual game in the Games object
+    	firebase.database().ref('Games').on('value', (snapshot) => {
+    			const gamesArr = [];
+    		// console.log(snapshotToArray(snapshot), ' this is snapshotToArray');
+
+    		const gamesFirebase = snapshotToArray(snapshot).map((gameFirebase) => {
+    			const game = gameFirebase.key
+
+    			gamesArr.push(game)
+    			return gamesArr
+    		})
+    		console.log(gamesArr, " this is gamesArr")    		
+    		this.setState({firebaseGames: gamesArr})
+			console.log(this.state, ' this is state inside gamesFirebase')
+		});
+
+		// console.log(this.state, ' this is state')
 	}
 	checkItem(e) {
 		//getting the value of the checkbox, which is listed as the specific game
@@ -34,44 +70,19 @@ class UserGameAvailability extends Component {
   //     		// console.log(gamesRef.innerText, " this is the gamesRef in firebase")
   //   	});
 
-  		//retrieving game data from Firebase and storing in an array
-    	function snapshotToArray(snapshot) {
-    		const returnArr = [];
-
-    		snapshot.forEach(function(childSnapshot) {
-    			const item = childSnapshot.val();
-
-    			item.key = childSnapshot.key;
-
-    			returnArr.push(item);
-    		})
-			console.log(returnArr, " this is returnArr")
-    		return returnArr
-
-    	}
-
-    	//getting each individual game in the Games object
-    	firebase.database().ref('Games').on('value', function(snapshot) {
-    		// console.log(snapshotToArray(snapshot), ' this is snapshotToArray');
-
-    		const gamesFirebase = snapshotToArray(snapshot).map((gameFirebase) => {
-    			console.log(gameFirebase.key, " this is snapshot key")
-    			return gameFirebase.key
-    		})
-		});
-
     	//getting each game in the responses array
     	const games = this.state.responses.map((game) => {
+    		console.log(game, " this is game")
     		return game
 		})
 
     	//IN PROGRESS - the below does not work. above each item is returned, but 
     	//still working on trying to compare the two arrays
-		if(games === gamesFirebase) {
-			console.log(games + ' and ' + gamesFirebase + " are the same game")
-		} else {
-    		console.log("game not found")
-    	}
+		// if(games === gamesFirebase) {
+		// 	console.log(games + ' and ' + gamesFirebase + " are the same game")
+		// } else {
+  //   		console.log("game not found")
+  //   	}
 	}
 
 	render() {
