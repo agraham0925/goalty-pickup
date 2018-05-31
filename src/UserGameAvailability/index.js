@@ -5,6 +5,7 @@ class UserGameAvailability extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			user: {},
 			currentUser: 'mace',
 			firebaseGames: [],
 			responses: []
@@ -78,6 +79,7 @@ class UserGameAvailability extends Component {
 	render() {
 		return(
 			<div>
+				<h3>Hi, {this.props.user}</h3>
 				<button onClick={this.props.logOut}>Log Out </button>
 				<form onSubmit={this.handleSubmit}>
 					<div>

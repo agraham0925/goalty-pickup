@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       username: '',
       user: {},
+      email: '',
     }
     // this.login = this.login.bind(this);
     // this.logout = this.logout.bind(this);

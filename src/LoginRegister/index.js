@@ -8,7 +8,9 @@ class LoginRegister extends Component {
 
 		this.state = {
 			email: '',
-               password: ''
+               password: '',
+               emailR: '',
+               passwordR: ''
 		}
 		this.login = this.login.bind(this);
           this.handleChange = this.handleChange.bind(this);
@@ -28,17 +30,11 @@ class LoginRegister extends Component {
      }
      register(e){
           e.preventDefault();
-          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+          firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
           .catch((err) => {
                console.log(err);
           })
      }
-
- // {this.state.user ?
-//                     <button onClick={this.logout}>Log Out</button>                
-//                     :
-//                     <button onClick={this.login}>Log In</button>              
-//                     }
 
 	render() {
 		return(
@@ -49,10 +45,11 @@ class LoginRegister extends Component {
                          <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} /> <br />
                          <input type="submit" onClick={this.login}/>
                     </form>
+
                     <h2>Register</h2>
                     <form>
-                         <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange} /> <br />
-                         <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} /> <br />
+                         <input type="text" name="emailR" placeholder="email" value={this.state.emailR} onChange={this.handleChange} /> <br />
+                         <input type="password" name="passwordR" placeholder="password" value={this.state.passwordR} onChange={this.handleChange} /> <br />
                          <button onClick={this.register}> Register </button>
                     </form>
 			</div>
@@ -61,19 +58,3 @@ class LoginRegister extends Component {
 }
 
 export default LoginRegister;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
