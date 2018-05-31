@@ -5,7 +5,7 @@ class UserGameAvailability extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: 'mace',
+			currentUser: 'mace',
 			firebaseGames: [],
 			responses: []
 		}
@@ -51,9 +51,6 @@ class UserGameAvailability extends Component {
 
 		//adding each game that user is available to responses state
 		this.state.responses.push(park)
-
-		// console.log(park, " this is value from checkItem")
-		// console.log(this.state.responses, " this is the state of responses")
 	}
 
 	handleSubmit(e, park){
@@ -61,12 +58,13 @@ class UserGameAvailability extends Component {
 
 		const firebaseDB = this.state.firebaseGames
 		const userResponses = this.state.responses
+		const currentUser = this.state.currentUser
 
 		//change to this.state.currentUser
 		//this will hold the user's name and indicate "true" for their attendance
 		const data = {
     		users: {
-    			mace: true
+    			currentUser: true //this doesn't work - uses actual text "currentUser" instead of pulling info from app
     		}
     	}
 

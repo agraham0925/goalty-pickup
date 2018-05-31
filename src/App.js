@@ -3,7 +3,7 @@ import './App.css';
 import firebase from './firebase.js';
 import UserPage from './UserPage';
 import UserGameAvailability from './UserGameAvailability';
-// import LoginRegister from './LoginRegister';
+import LoginRegister from './LoginRegister';
 // import { Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -11,10 +11,24 @@ class App extends Component {
     super();
     this.state = {
       username: '',
-      user: null
+      user: {},
     }
     // this.login = this.login.bind(this);
     // this.logout = this.logout.bind(this);
+  }
+
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.setState({user});
+      } else {
+        this.setState({user: null});
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.authListener()
   }
 
   // getUsers() {
@@ -43,18 +57,20 @@ class App extends Component {
   //   });
   // }
 
+
+
+  // <button onClick={this.getUsers}>get users test</button>
+  //     {this.state.user ?
+  //       <button onClick={this.logout}>Log Out</button>                
+  //       :
+  //       <button onClick={this.login}>Log In</button>              
+  //     }
+// <UserPage user={this.state.user} responses={this.state.responses}/>
   render() {
     return (
       <div className="App">
-      <button onClick={this.getUsers}>get users test</button>
-      {this.state.user ?
-        <button onClick={this.logout}>Log Out</button>                
-        :
-        <button onClick={this.login}>Log In</button>              
-      }
+      {this.state.user ? (<UserGameAvailability />) : (<LoginRegister />)}
 
-      <UserPage user={this.state.user} responses={this.state.responses}/>
-      <UserGameAvailability />
       </div>
     );
   }
