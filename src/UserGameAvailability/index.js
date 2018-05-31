@@ -59,42 +59,22 @@ class UserGameAvailability extends Component {
 	handleSubmit(e, park){
 		e.preventDefault();
 
-    	//getting each game in the responses array
-  //   	const games = this.state.responses.map((game) => {
-  //   		console.log(game, " this is game")
-  //   		return game
-		// })
-
 		const firebaseDB = this.state.firebaseGames
 		const userResponses = this.state.responses
 
-		// console.log(firebaseDB, ' this is firebaseDB')
-		// console.log(userResponses, ' this is userResponses')
+		//change to this.state.currentUser
+		//this will hold the user's name and indicate "true" for their attendance
+		const data = {
+    		users: {
+    			mace: true
+    		}
+    	}
 
-
-
-		// const filteredArr = firebaseDB.filter((game) => userResponses.includes(game));
-		// console.log(filteredArr, " this is filteredArr")
-
-		//connect to database
-    	// const gamesRef = firebase.database().ref('Games/');
-
-		// get each game on it's own
-
-    	//
-    	// const data = {
-    	// 	users: {
-    	// 		this.state.user: true
-    	// 	}
-    	// }
-    	
-    	// const game = {
-
-    	// }
-
-    	//add user: true data to each game
-		// gamesRef.child(gameId).update(data)
-
+    	//adding game attendance to the database
+		userResponses.forEach((parkName) => {
+			const gamesRef = firebase.database().ref('Games');
+			gamesRef.child(parkName).update(data)
+		})
 	}
 
 	render() {
