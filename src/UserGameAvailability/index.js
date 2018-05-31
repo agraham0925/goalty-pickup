@@ -6,12 +6,11 @@ class UserGameAvailability extends Component {
 		super(props);
 		this.state = {
 			user: {},
-			currentUser: 'mace',
+			currentUser: '',
 			firebaseGames: [],
-			responses: []
+			responses: [],
+			hasKit: false
 		}
-		this.checkItem = this.checkItem.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidMount() {
@@ -43,18 +42,27 @@ class UserGameAvailability extends Component {
     		this.setState({firebaseGames: gamesArr})
 		});
 
+		// this.props.authListener();
+
 		// console.log(this.state, ' this is state')
 	}
 
-	checkItem(e) {
+	checkItem = (e) => {
 		//getting the value of the checkbox, which is listed as the specific game
 		const park = e.currentTarget.value
 
 		//adding each game that user is available to responses state
 		this.state.responses.push(park)
 	}
+	hasKit = (e) => {
 
-	handleSubmit(e, park){
+		this.setState({hasKit: true})
+		console.log(this.state, " this is now state")
+
+		//need to update user DB info to indicate that they have a kit
+	}
+
+	handleSubmit = (e, park) => {
 		e.preventDefault();
 
 		const firebaseDB = this.state.firebaseGames
@@ -65,7 +73,7 @@ class UserGameAvailability extends Component {
 		//this will hold the user's name and indicate "true" for their attendance
 		const data = {
     		users: {
-    			currentUser: true //this doesn't work - uses actual text "currentUser" instead of pulling info from app
+    			[this.props.email]: true
     		}
     	}
 
@@ -79,8 +87,10 @@ class UserGameAvailability extends Component {
 	render() {
 		return(
 			<div>
-				<h3>Hi, {this.props.user}</h3>
+				<button>Update User Info</button>
 				<button onClick={this.props.logOut}>Log Out </button>
+				<h3>Hi, {this.props.email}</h3>
+				<h4>Add your availability for pickup this weekend!</h4>
 				<form onSubmit={this.handleSubmit}>
 					<div>
 						Revere Park:
@@ -113,6 +123,10 @@ class UserGameAvailability extends Component {
 						<label for="humboldt_3"> Sunday 12pm </label>
 						<input type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
 						<label for="humboldt_4"> Sunday 1pm </label>
+					</div>
+					<div>
+						<input type="checkbox" name="has_kit" value="has_kit" onChange={this.hasKit}/>
+						<label for="has_kit"> Check this box if you're able to bring a kit </label>
 					</div>
 					<div>
 						<button>Submit</button>

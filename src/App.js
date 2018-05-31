@@ -13,6 +13,10 @@ class App extends Component {
       username: '',
       user: {},
       email: '',
+      uid: '',
+      phone: '',
+      fName: '',
+      lName: ''
     }
     // this.login = this.login.bind(this);
     // this.logout = this.logout.bind(this);
@@ -21,7 +25,16 @@ class App extends Component {
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
-        this.setState({user});
+        this.setState({
+          user,
+          email: user.email,
+          uid: user.uid
+        });
+        this.findUser()
+        console.log(this.state.user, " this is user")
+        console.log(this.state.user.email, " this is email")
+        console.log(this.state.user.uid, " this is uid")
+        console.log(this.state, " this is state")
       } else {
         this.setState({user: null});
       }
@@ -31,8 +44,48 @@ class App extends Component {
   componentDidMount() {
     this.authListener()
   }
+
   logOut() {
     firebase.auth().signOut()
+  }
+
+  findUser = () => {
+
+    function snapshotToArray(snapshot) {
+      const returnUserArr = [];
+
+      snapshot.forEach((childSnapshot) => {
+        const item = childSnapshot.val();
+
+        item.key = childSnapshot.key;
+
+        returnUserArr.push(item);
+      })
+      return returnUserArr
+    }
+
+    firebase.database().ref('users').on('value', (snapshot) => {
+      const userArr = [];
+
+      const Firebase = snapshotToArray(snapshot).map((u) => {
+        const user = u.key
+
+        if(user === this.state.uid) {
+          this.setState({
+            phone: u.phone,
+            fName: u.firstname,
+            lName: u.lastname
+          })
+          console.log(user, " found match - it worked!")
+          console.log(this.state.phone, " this is phone")
+          console.log(this.state.fName, " this is fname")
+          console.log(this.state.lName, " this is lname")
+          console.log(this.state, ' this is state after user info added')
+        } else {
+          console.log("nope")
+        }
+      })  
+    });
   }
 
   // getUsers() {
@@ -73,7 +126,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {this.state.user ? (<UserGameAvailability logOut={this.logOut}/>) : (<LoginRegister />)}
+      {this.state.user ? (<UserGameAvailability email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister />)}
 
       </div>
     );

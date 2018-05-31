@@ -9,13 +9,17 @@ class LoginRegister extends Component {
 		this.state = {
 			email: '',
                password: '',
+               username: '',
                emailR: '',
-               passwordR: ''
+               passwordR: '',
+               usernameR: '',
+               firstnameR: '',
+               lastnameR: '',
+               phoneR: ''
 		}
 		this.login = this.login.bind(this);
           this.handleChange = this.handleChange.bind(this);
           this.register = this.register.bind(this);
-  // 		this.logout = this.logout.bind(this);
 	}
      handleChange(e) {
           this.setState({ [e.target.name]: e.target.value });
@@ -27,6 +31,8 @@ class LoginRegister extends Component {
           }).catch((err) => {
                console.log(err)
           });
+
+          //need to make a call to the firebase DB to grab user info from USERS database
      }
      register(e){
           e.preventDefault();
@@ -34,19 +40,24 @@ class LoginRegister extends Component {
           .catch((err) => {
                console.log(err);
           })
+
+          //need to create a new user in the firebase DB and populate with new info
      }
 
 	render() {
 		return(
 			<div>
-                    <h2>Login</h2>
+                    <h1>Goaltimate Pickup</h1>
+                    <h3>Login</h3>
+                    <h4>If you already have an account, login here:</h4>
 				<form>
                          <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange} /> <br />
                          <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} /> <br />
                          <input type="submit" onClick={this.login}/>
                     </form>
 
-                    <h2>Register</h2>
+                    <h3>Register</h3>
+                    <h4> Create an account below:</h4>
                     <form>
                          <input type="text" name="emailR" placeholder="email" value={this.state.emailR} onChange={this.handleChange} /> <br />
                          <input type="password" name="passwordR" placeholder="password" value={this.state.passwordR} onChange={this.handleChange} /> <br />
