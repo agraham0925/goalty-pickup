@@ -25,12 +25,6 @@ class LoginRegister extends Component {
                console.log(err)
           });
      }
-	// logout() {
-	// 	auth.signOut()
-	// 	.then(() => {
-	// 	this.setState({user: null});
- //    });
-	// }
 
  // {this.state.user ?
 //                     <button onClick={this.logout}>Log Out</button>                

@@ -30,6 +30,9 @@ class App extends Component {
   componentDidMount() {
     this.authListener()
   }
+  logOut() {
+    firebase.auth().signOut()
+  }
 
   // getUsers() {
   //   const firebaseUsers = firebase.database().ref().child("users");
@@ -69,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {this.state.user ? (<UserGameAvailability />) : (<LoginRegister />)}
+      {this.state.user ? (<UserGameAvailability logOut={this.logOut}/>) : (<LoginRegister />)}
 
       </div>
     );
