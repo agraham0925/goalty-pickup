@@ -90,38 +90,38 @@ class UserGameAvailability extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<div>
 						Revere Park:
-							<input type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
+							<input className="park-fields" type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
 							<label for="revere_1"> Saturday 12pm </label>
-							<input type="checkbox" name="game" value="revere_2" onChange={this.checkItem} />
+							<input className="park-fields" type="checkbox" name="game" value="revere_2" onChange={this.checkItem} />
 							<label for="revere_2"> Saturday 1pm </label>
-							<input type="checkbox" name="game" value="revere_3" onChange={this.checkItem} />
+							<input className="park-fields" type="checkbox" name="game" value="revere_3" onChange={this.checkItem} />
 							<label for="revere_3"> Sunday 12pm </label>
-							<input type="checkbox" name="game" value="revere_4" onChange={this.checkItem} />
+							<input className="park-fields" type="checkbox" name="game" value="revere_4" onChange={this.checkItem} />
 							<label for="revere_4"> Sunday 1pm </label>
 						<br />
 						Eckhart Park:
-						<input type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
+						<input className="park-fields" type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
 						<label for="eckhart_1"> Saturday 12pm </label>
-						<input type="checkbox" name="game" value="eckhart_2" onChange={this.checkItem}/>
+						<input className="park-fields" type="checkbox" name="game" value="eckhart_2" onChange={this.checkItem}/>
 						<label for="eckhart_2"> Saturday 1pm </label>
-						<input type="checkbox" name="game" value="eckhart_3" onChange={this.checkItem}/>
+						<input className="park-fields" type="checkbox" name="game" value="eckhart_3" onChange={this.checkItem}/>
 						<label for="eckhart_3"> Sunday 12pm </label>
-						<input type="checkbox" name="game" value="eckhart_4" onChange={this.checkItem}/>
+						<input className="park-fields" type="checkbox" name="game" value="eckhart_4" onChange={this.checkItem}/>
 						<label for="eckhart_4"> Sunday 1pm </label>
 			
 						<br />
 						Humboldt Park:
-						<input type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
+						<input  className="park-fields" type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
 						<label for="humboldt_1"> Saturday 12pm </label>
-						<input type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
+						<input  className="park-fields" type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
 						<label for="humboldt_2"> Saturday 1pm </label>
-						<input type="checkbox" name="game" value="humboldt_3" onChange={this.checkItem}/>
+						<input  className="park-fields" type="checkbox" name="game" value="humboldt_3" onChange={this.checkItem}/>
 						<label for="humboldt_3"> Sunday 12pm </label>
-						<input type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
+						<input  className="park-fields" type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
 						<label for="humboldt_4"> Sunday 1pm </label>
 					</div>
 					<div>
-						<input type="checkbox" name="has_kit" value="has_kit" onChange={this.hasKit}/>
+						<input  className="park-fields" type="checkbox" name="has_kit" value="has_kit" onChange={this.hasKit}/>
 						<label for="has_kit"> Check this box if you're able to bring a kit </label>
 					</div>
 					<div>

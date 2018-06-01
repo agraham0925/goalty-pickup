@@ -55,7 +55,7 @@ class LoginRegister extends Component {
 		return(
 			<div>
                     <div className="login">
-                         <h3>Login</h3>
+                         <h2>Login</h2>
                          <h4>If you already have an account, login here:</h4>
 				      <form>
                               <input className="form-fields" type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange} /> <br />
@@ -64,7 +64,7 @@ class LoginRegister extends Component {
                          </form>
                     </div>
                     <div className="register">
-                         <h3>Register</h3>
+                         <h2>Register</h2>
                          <h4> Create an account below:</h4>
                          <form>
                               <input className="form-fields" type="text" name="fNameR" placeholder="first name" value={this.state.fNameR} onChange={this.handleChange} /> <br />
@@ -72,7 +72,7 @@ class LoginRegister extends Component {
                               <input className="form-fields" type="text" name="phoneR" placeholder="phone number" value={this.state.phoneR} onChange={this.handleChange} /> <br />
                               <input className="form-fields" type="text" name="emailR" placeholder="email" value={this.state.emailR} onChange={this.handleChange} /> <br />
                               <input className="form-fields" type="password" name="passwordR" placeholder="password" value={this.state.passwordR} onChange={this.handleChange} /> <br />
-                              <small> Note: Phone number will only be used to send text messages regarding game status.</small> <br />
+                              <h5> Note: Phone number will only be used to send text messages regarding game status.</h5> <br />
                               <button className="btn" onClick={this.register}> Register </button>
                          </form>
                     </div>
