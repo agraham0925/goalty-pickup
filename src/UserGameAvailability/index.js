@@ -68,15 +68,13 @@ class UserGameAvailability extends Component {
 		const currentUser = this.state.currentUser
 
 		const data = {
-    		users: {
-    			[this.props.email]: true
-    		}
-    	}
+			[this.props.fName]: true
+		}
 
     	//adding game attendance to the database
 		userResponses.forEach((parkName) => {
 			const gamesRef = firebase.database().ref('Games');
-			gamesRef.child(parkName).update(data)
+			gamesRef.child(parkName).child('users').update(data)
 		})
 	}
 
