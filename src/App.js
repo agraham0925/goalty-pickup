@@ -69,8 +69,8 @@ class App extends Component {
         if(user === this.state.uid) {
           this.setState({
             phone: u.phone,
-            // fName: this.props.fNameR,
-            // lName: this.props.lNameR
+            fName: u.firstname,
+            lName: u.lastname
           })
           console.log(this.state, ' this is state after user info added')
         } else {

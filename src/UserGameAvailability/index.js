@@ -54,9 +54,9 @@ class UserGameAvailability extends Component {
 	}
 	hasKit = (e) => {
 
+		console.log( "has kit checked")
 		this.setState({hasKit: true})
 		console.log(this.state, " this is now state")
-
 		//need to update user DB info to indicate that they have a kit
 	}
 
