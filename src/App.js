@@ -29,9 +29,6 @@ class App extends Component {
           uid: user.uid,
         });
         this.findUser()
-        // console.log(this.state.user, " this is user")
-        // console.log(this.state.user.email, " this is email")
-        // console.log(this.state.user.uid, " this is uid")
         console.log(this.state, " this is state")
         console.log(this.props.lastnameR, " this is last name")
       } else {
@@ -113,6 +110,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <div className="bg">
+        <h1 className="transbox"> Goaltimate Pickup</h1>
+      </div>
       {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister newUserListener={this.newUserListener} />)}
 
       </div>

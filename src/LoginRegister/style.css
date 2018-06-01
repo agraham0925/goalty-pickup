@@ -1,19 +1,14 @@
-.current {
-	background-color: lime;
-	color: black;
-}
-
-span {
-	cursor: pointer;
-}
-
-/*body {
+body {
 	background-color: indigo;
 	color: white;
-}*/
+}
 
 .login-error {
 	border: 1px solid red;
 	padding: 20px;
 	background-color: pink;
+}
+
+.form-fields {
+	margin: 5px;
 }

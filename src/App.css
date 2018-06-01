@@ -26,3 +26,44 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body {
+  background-color: indigo;
+  color: white;
+}
+
+.login-error {
+  border: 1px solid red;
+  padding: 20px;
+  background-color: pink;
+}
+
+.btn {
+  background-color: white;
+  border: none;
+  color: indigo;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.bg {
+  background: url("/images/architecture-auto-automobiles-210182.jpg");
+  height: 300px; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.transbox {
+  margin: 30px;
+  background-color: rgba(0, 0, 0, .75);
+  border: 1px solid black;
+  color: white;
+  font-size: 4em;
+  padding: 20px;
+  display: inline-block;
+}

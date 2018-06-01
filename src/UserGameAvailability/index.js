@@ -83,8 +83,8 @@ class UserGameAvailability extends Component {
 	render() {
 		return(
 			<div>
-				<button>Update User Info</button>
-				<button onClick={this.props.logOut}>Log Out </button>
+				<button className="btn">Update User Info</button>
+				<button className="btn" onClick={this.props.logOut}>Log Out </button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
 				<form onSubmit={this.handleSubmit}>
@@ -125,7 +125,7 @@ class UserGameAvailability extends Component {
 						<label for="has_kit"> Check this box if you're able to bring a kit </label>
 					</div>
 					<div>
-						<button>Submit</button>
+						<button className="btn" >Submit</button>
 					</div>
 				</form>
 			</div>
