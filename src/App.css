@@ -28,7 +28,7 @@
 }
 
 body {
-  background-color: indigo;
+  background-color: #723D99;
   color: white;
 }
 
@@ -67,3 +67,43 @@ body {
   padding: 20px;
   display: inline-block;
 }
+
+.login {
+  border: 2px solid white;
+  margin: 50px;
+  box-shadow: 5px 10px rgba(0, 0, 0,  0.3);
+  width: 50vw;
+  display: inline-block;
+}
+
+input[type="text"],
+input[type="password"]
+{
+  box-shadow: 0 0 5px white;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.register {
+  border: 2px solid white;
+  margin: 50px;
+  box-shadow: 5px 10px rgba(0, 0, 0,  0.3);
+  width: 50vw;
+  display: inline-block;
+}
+
+/*input {
+    border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+}*/

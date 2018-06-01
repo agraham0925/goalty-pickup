@@ -54,25 +54,28 @@ class LoginRegister extends Component {
 	render() {
 		return(
 			<div>
-                    <h3>Login</h3>
-                    <h4>If you already have an account, login here:</h4>
-				<form>
-                         <input className="form-fields" type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange} /> <br />
-                         <input className="form-fields" type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} /> <br />
-                         <input className="form-fields" type="submit" onClick={this.login}/>
-                    </form>
-
-                    <h3>Register</h3>
-                    <h4> Create an account below:</h4>
-                    <form>
-                         <input className="form-fields" type="text" name="fNameR" placeholder="first name" value={this.state.fNameR} onChange={this.handleChange} /> <br />
-                         <input className="form-fields" type="text" name="lNameR" placeholder="last name" value={this.state.lNameR} onChange={this.handleChange} /> <br />
-                         <input className="form-fields" type="text" name="phoneR" placeholder="phone number" value={this.state.phoneR} onChange={this.handleChange} /> <br />
-                         <input className="form-fields" type="text" name="emailR" placeholder="email" value={this.state.emailR} onChange={this.handleChange} /> <br />
-                         <input className="form-fields" type="password" name="passwordR" placeholder="password" value={this.state.passwordR} onChange={this.handleChange} /> <br />
-                         <small> Note: Phone number will only be used to send text messages regarding game status.</small> <br />
-                         <button className="btn" onClick={this.register}> Register </button>
-                    </form>
+                    <div className="login">
+                         <h3>Login</h3>
+                         <h4>If you already have an account, login here:</h4>
+				      <form>
+                              <input className="form-fields" type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange} /> <br />
+                              <input className="form-fields" type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} /> <br />
+                              <button className="btn" onClick={this.login}>Submit</button>
+                         </form>
+                    </div>
+                    <div className="register">
+                         <h3>Register</h3>
+                         <h4> Create an account below:</h4>
+                         <form>
+                              <input className="form-fields" type="text" name="fNameR" placeholder="first name" value={this.state.fNameR} onChange={this.handleChange} /> <br />
+                              <input className="form-fields" type="text" name="lNameR" placeholder="last name" value={this.state.lNameR} onChange={this.handleChange} /> <br />
+                              <input className="form-fields" type="text" name="phoneR" placeholder="phone number" value={this.state.phoneR} onChange={this.handleChange} /> <br />
+                              <input className="form-fields" type="text" name="emailR" placeholder="email" value={this.state.emailR} onChange={this.handleChange} /> <br />
+                              <input className="form-fields" type="password" name="passwordR" placeholder="password" value={this.state.passwordR} onChange={this.handleChange} /> <br />
+                              <small> Note: Phone number will only be used to send text messages regarding game status.</small> <br />
+                              <button className="btn" onClick={this.register}> Register </button>
+                         </form>
+                    </div>
 			</div>
 		)
 	}
