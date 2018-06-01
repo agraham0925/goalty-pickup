@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase.js';
+// import * as admin from "firebase-admin";
 import UserPage from './UserPage';
 import UserGameAvailability from './UserGameAvailability';
 import LoginRegister from './LoginRegister';
-// import { Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -18,8 +18,6 @@ class App extends Component {
       fName: '',
       lName: ''
     }
-    // this.login = this.login.bind(this);
-    // this.logout = this.logout.bind(this);
   }
 
   authListener() {
@@ -28,13 +26,14 @@ class App extends Component {
         this.setState({
           user,
           email: user.email,
-          uid: user.uid
+          uid: user.uid,
         });
         this.findUser()
-        console.log(this.state.user, " this is user")
-        console.log(this.state.user.email, " this is email")
-        console.log(this.state.user.uid, " this is uid")
+        // console.log(this.state.user, " this is user")
+        // console.log(this.state.user.email, " this is email")
+        // console.log(this.state.user.uid, " this is uid")
         console.log(this.state, " this is state")
+        console.log(this.props.lastnameR, " this is last name")
       } else {
         this.setState({user: null});
       }
@@ -73,13 +72,9 @@ class App extends Component {
         if(user === this.state.uid) {
           this.setState({
             phone: u.phone,
-            fName: u.firstname,
-            lName: u.lastname
+            // fName: this.props.fNameR,
+            // lName: this.props.lNameR
           })
-          console.log(user, " found match - it worked!")
-          console.log(this.state.phone, " this is phone")
-          console.log(this.state.fName, " this is fname")
-          console.log(this.state.lName, " this is lname")
           console.log(this.state, ' this is state after user info added')
         } else {
           console.log("nope")
@@ -87,6 +82,22 @@ class App extends Component {
       })  
     });
   }
+
+  newUserListener = () => {
+    console.log('newUserListener function hit')
+    // exports.createProfile = functions.auth.user().onCreate( event => {
+    //   return firebase.database().ref('/users/' + event.data.uid).set({
+    //     firstName: this.props.fNameR,
+    //     lastName: this.props.lNameR
+    //   });
+    // });
+  }
+  // gamesListener = () => {
+    // if ANY GAMES === 8 users {
+      //print message "Game on at " + PARK + " on " + DAY + " at " + TIME
+    // } else {
+        // ERR HANDLING 
+  // }
 
   // getUsers() {
   //   const firebaseUsers = firebase.database().ref().child("users");
@@ -97,36 +108,12 @@ class App extends Component {
   //     console.log(firebaseUsers.innerText, " this is the users in firebase")
   //   });
   // }
-  // doLogin = (user, password) => {
-  //   console.log("you are trying to login");
-  // }
-  // logout() {
-  //  auth.signOut()
-  //  .then(() => {
-  //  this.setState({user: null});
-  //   });
-  // }
-  // login() {
-  //   auth.signInWithPopup(provider) 
-  //     .then((result) => {
-  //       const user = result.user;
-  //       this.setState({user});
-  //   });
-  // }
 
-
-
-  // <button onClick={this.getUsers}>get users test</button>
-  //     {this.state.user ?
-  //       <button onClick={this.logout}>Log Out</button>                
-  //       :
-  //       <button onClick={this.login}>Log In</button>              
-  //     }
 // <UserPage user={this.state.user} responses={this.state.responses}/>
   render() {
     return (
       <div className="App">
-      {this.state.user ? (<UserGameAvailability email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister />)}
+      {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister newUserListener={this.newUserListener} />)}
 
       </div>
     );
@@ -134,12 +121,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-

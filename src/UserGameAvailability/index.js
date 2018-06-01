@@ -5,8 +5,6 @@ class UserGameAvailability extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: {},
-			currentUser: '',
 			firebaseGames: [],
 			responses: [],
 			hasKit: false
@@ -69,8 +67,6 @@ class UserGameAvailability extends Component {
 		const userResponses = this.state.responses
 		const currentUser = this.state.currentUser
 
-		//change to this.state.currentUser
-		//this will hold the user's name and indicate "true" for their attendance
 		const data = {
     		users: {
     			[this.props.email]: true
@@ -89,7 +85,7 @@ class UserGameAvailability extends Component {
 			<div>
 				<button>Update User Info</button>
 				<button onClick={this.props.logOut}>Log Out </button>
-				<h3>Hi, {this.props.email}</h3>
+				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
 				<form onSubmit={this.handleSubmit}>
 					<div>

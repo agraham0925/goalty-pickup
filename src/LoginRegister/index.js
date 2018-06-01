@@ -12,19 +12,15 @@ class LoginRegister extends Component {
                username: '',
                emailR: '',
                passwordR: '',
-               usernameR: '',
-               firstnameR: '',
-               lastnameR: '',
+               fNameR: '',
+              lNameR: '',
                phoneR: ''
 		}
-		this.login = this.login.bind(this);
-          this.handleChange = this.handleChange.bind(this);
-          this.register = this.register.bind(this);
 	}
-     handleChange(e) {
+     handleChange = (e) => {
           this.setState({ [e.target.name]: e.target.value });
      }
-     login(e) {
+     login = (e) => {
           e.preventDefault();
           // console.log("you are trying to log in")
           firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
@@ -34,14 +30,25 @@ class LoginRegister extends Component {
 
           //need to make a call to the firebase DB to grab user info from USERS database
      }
-     register(e){
+     register = (e) => {
           e.preventDefault();
           firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
+          // console.log(this.state.emailR, " this is new user emailR")
+          // console.log(this.state.phoneR, " this is new user phoneR")
+          // console.log(this.state.fNameR, " this is new user fNameR")
+          // console.log(this.state.lNameR, " this is new user lNameR")
           .catch((err) => {
                console.log(err);
           })
 
-          //need to create a new user in the firebase DB and populate with new info
+          this.props.newUserListener();
+          //simulaneously, call another function to create a user
+          // this.props.addUser from App.js
+     }
+     componentDidMount(){
+
+
+
      }
 
 	render() {
@@ -59,8 +66,12 @@ class LoginRegister extends Component {
                     <h3>Register</h3>
                     <h4> Create an account below:</h4>
                     <form>
+                         <input type="text" name="fNameR" placeholder="first name" value={this.state.fNameR} onChange={this.handleChange} /> <br />
+                         <input type="text" name="lNameR" placeholder="last name" value={this.state.lNameR} onChange={this.handleChange} /> <br />
+                         <input type="text" name="phoneR" placeholder="phone number" value={this.state.phoneR} onChange={this.handleChange} /> <br />
                          <input type="text" name="emailR" placeholder="email" value={this.state.emailR} onChange={this.handleChange} /> <br />
                          <input type="password" name="passwordR" placeholder="password" value={this.state.passwordR} onChange={this.handleChange} /> <br />
+                         <small> Note: Phone number will only be used to send text messages regarding game status.</small> <br />
                          <button onClick={this.register}> Register </button>
                     </form>
 			</div>
