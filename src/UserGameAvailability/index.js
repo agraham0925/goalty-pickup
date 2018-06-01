@@ -7,7 +7,8 @@ class UserGameAvailability extends Component {
 		this.state = {
 			firebaseGames: [],
 			responses: [],
-			hasKit: false
+			hasKit: false,
+			message: ''
 		}
 	}
 
@@ -54,10 +55,14 @@ class UserGameAvailability extends Component {
 	}
 	hasKit = (e) => {
 
-		console.log( "has kit checked")
-		this.setState({hasKit: true})
-		console.log(this.state, " this is now state")
-		//need to update user DB info to indicate that they have a kit
+		// console.log( "has kit checked")
+		// this.setState({hasKit: true})
+		// console.log(this.state, " this is now state")
+
+		//updates firebase to indicate user has equipment/kit
+		firebase.database().ref('/users/' + this.props.uid).update({
+			hasKit: true
+		});
 	}
 
 	handleSubmit = (e, park) => {
@@ -76,6 +81,11 @@ class UserGameAvailability extends Component {
 			const gamesRef = firebase.database().ref('Games');
 			gamesRef.child(parkName).child('users').update(data)
 		})
+
+		let message = "You're game availability has been added!"
+
+		this.setState({message: message})
+		console.log(this.state, " this is state with message")
 	}
 
 	render() {
