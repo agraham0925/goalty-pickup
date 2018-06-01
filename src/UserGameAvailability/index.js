@@ -54,7 +54,7 @@ class UserGameAvailability extends Component {
 		this.state.responses.push(park)
 	}
 	hasKit = (e) => {
-
+		//AG NOTE: state is not setting -- not sure why
 		// console.log( "has kit checked")
 		// this.setState({hasKit: true})
 		// console.log(this.state, " this is now state")
@@ -81,8 +81,11 @@ class UserGameAvailability extends Component {
 			const gamesRef = firebase.database().ref('Games');
 			gamesRef.child(parkName).child('users').update(data)
 		})
+	}
 
-		let message = "You're game availability has been added!"
+	displayMessage = (e) => {
+		// e.preventDefault();
+		const message = "Your game availability has been added!"
 
 		this.setState({message: message})
 		console.log(this.state, " this is state with message")
@@ -91,7 +94,6 @@ class UserGameAvailability extends Component {
 	render() {
 		return(
 			<div>
-				<button className="btn">Update User Info</button>
 				<button className="btn" onClick={this.props.logOut}>Log Out </button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
@@ -133,7 +135,7 @@ class UserGameAvailability extends Component {
 						<label for="has_kit"> Check this box if you're able to bring a kit </label>
 					</div>
 					<div>
-						<button className="btn" >Submit</button>
+						<button onClick={this.displayMessage} className="btn" >Submit</button>
 					</div>
 				</form>
 			</div>

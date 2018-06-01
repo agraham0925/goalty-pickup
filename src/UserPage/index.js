@@ -6,7 +6,8 @@ function UserPage(props) {
 	return(
 		<div>
 			<div>
-				<h1> Hi, {props.user} </h1>
+				<h1> Hi, {this.props.fname} </h1>
+				<p>You're game availability has been submitted</p>
 				<button> Update Info </button>
 				<button> Logout </button>
 			</div>

@@ -29,8 +29,8 @@ class App extends Component {
           uid: user.uid,
         });
         this.findUser()
-        console.log(this.state, " this is state")
-        console.log(this.props.lastnameR, " this is last name")
+        // console.log(this.state, " this is state")
+        // console.log(this.props.lastnameR, " this is last name")
       } else {
         this.setState({user: null});
       }
