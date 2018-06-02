@@ -16,7 +16,13 @@ class App extends Component {
       uid: '',
       phone: '',
       fName: '',
-      lName: ''
+      lName: '',
+      password: '',
+      emailR: '',
+      passwordR: '',
+      fNameR: '',
+      lNameR: '',
+      phoneR: ''
     }
   }
 
@@ -40,6 +46,21 @@ class App extends Component {
   componentDidMount() {
     this.authListener()
   }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  login = (e) => {
+          e.preventDefault();
+          // console.log("you are trying to log in")
+          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
+          }).catch((err) => {
+               console.log(err)
+          });
+
+          //need to make a call to the firebase DB to grab user info from USERS database
+     }
 
   logOut() {
     firebase.auth().signOut()
@@ -89,7 +110,35 @@ class App extends Component {
     //   });
     // });
   }
-  
+
+  login = (e) => {
+    e.preventDefault();
+    // console.log("you are trying to log in")
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
+    }).catch((err) => {
+         console.log(err)
+    });
+
+    console.log(this.state, " this is state after login")
+      //need to make a call to the firebase DB to grab user info from USERS database
+  }
+
+  register = (e) => {
+    e.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
+    // console.log(this.state.emailR, " this is new user emailR")
+    // console.log(this.state.phoneR, " this is new user phoneR")
+    // console.log(this.state.fNameR, " this is new user fNameR")
+    // console.log(this.state.lNameR, " this is new user lNameR")
+    .catch((err) => {
+         console.log(err);
+    })
+
+    this.props.newUserListener();
+    //simulaneously, call another function to create a user
+    // this.props.addUser from App.js
+  }
+
   // gamesListener = () => {
     // if ANY GAMES === 8 users {
       //print message "Game on at " + PARK + " on " + DAY + " at " + TIME
@@ -114,7 +163,7 @@ class App extends Component {
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister newUserListener={this.newUserListener} />)}
+      {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} login={this.login} newUserListener={this.newUserListener} />)}
 
       </div>
     );
