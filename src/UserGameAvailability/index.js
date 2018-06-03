@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import firebase from '../firebase.js';
+import Modal from '..Modal';
 
 class UserGameAvailability extends Component {
 	constructor(props) {
@@ -8,7 +9,7 @@ class UserGameAvailability extends Component {
 			firebaseGames: [],
 			responses: [],
 			hasKit: false,
-			message: ''
+			modalClass: 'closed'
 		}
 	}
 
@@ -41,7 +42,8 @@ class UserGameAvailability extends Component {
     		this.setState({firebaseGames: gamesArr})
 		});
 
-		// this.props.authListener();
+    	//creates new user
+		this.props.newUserListener();
 
 		// console.log(this.state, ' this is state')
 	}
@@ -54,10 +56,6 @@ class UserGameAvailability extends Component {
 		this.state.responses.push(park)
 	}
 	hasKit = (e) => {
-		//AG NOTE: state is not setting -- not sure why
-		// console.log( "has kit checked")
-		// this.setState({hasKit: true})
-		// console.log(this.state, " this is now state")
 
 		//updates firebase to indicate user has equipment/kit
 		firebase.database().ref('/users/' + this.props.uid).update({
@@ -91,14 +89,32 @@ class UserGameAvailability extends Component {
 		console.log(this.state, " this is state with message")
 	}
 
+	showModal = () => {
+		setState({
+			modalClass: 'open'
+		})
+
+		console.log(this.state, " state showing modal")
+	}
+
+	hideModal = () => {
+		setState({
+			modalClass: 'closed'
+		})
+
+		console.log(this.state, " state hiding modal")
+	}
+
 	render() {
 		return(
 			<div>
-				<button className="btn" onClick={this.props.logOut}>Log Out </button>
+				<Modal close={this.hideModal} modalClass={this.state.modalClass} />
+				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
 				<form onSubmit={this.handleSubmit}>
 					<div>
+
 						Revere Park:
 							<input className="park-fields" type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
 							<label for="revere_1"> Saturday 12pm </label>
@@ -109,6 +125,7 @@ class UserGameAvailability extends Component {
 							<input className="park-fields" type="checkbox" name="game" value="revere_4" onChange={this.checkItem} />
 							<label for="revere_4"> Sunday 1pm </label>
 						<br />
+
 						Eckhart Park:
 						<input className="park-fields" type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
 						<label for="eckhart_1"> Saturday 12pm </label>
@@ -118,8 +135,8 @@ class UserGameAvailability extends Component {
 						<label for="eckhart_3"> Sunday 12pm </label>
 						<input className="park-fields" type="checkbox" name="game" value="eckhart_4" onChange={this.checkItem}/>
 						<label for="eckhart_4"> Sunday 1pm </label>
-			
 						<br />
+
 						Humboldt Park:
 						<input  className="park-fields" type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
 						<label for="humboldt_1"> Saturday 12pm </label>
@@ -130,10 +147,12 @@ class UserGameAvailability extends Component {
 						<input  className="park-fields" type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
 						<label for="humboldt_4"> Sunday 1pm </label>
 					</div>
+
 					<div>
 						<input  className="park-fields" type="checkbox" name="has_kit" value="has_kit" onChange={this.hasKit}/>
 						<label for="has_kit"> Check this box if you're able to bring a kit </label>
 					</div>
+
 					<div>
 						<button onClick={this.displayMessage} className="btn" >Submit</button>
 					</div>

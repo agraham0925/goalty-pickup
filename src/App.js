@@ -18,14 +18,16 @@ class App extends Component {
       fName: '',
       lName: '',
       password: '',
+      // this is for new user registrations
       emailR: '',
       passwordR: '',
       fNameR: '',
       lNameR: '',
-      phoneR: ''
+      phoneR: '',
+      message: ''
     }
   }
-
+  //confirming if user is logged in
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
@@ -52,22 +54,20 @@ class App extends Component {
   }
 
   login = (e) => {
-          e.preventDefault();
-          // console.log("you are trying to log in")
-          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
-          }).catch((err) => {
-               console.log(err)
-          });
+    e.preventDefault();
 
-          //need to make a call to the firebase DB to grab user info from USERS database
-     }
+    //using firebase user authentication to confirm user has account in app
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
+    }).catch((err) => {
+         console.log(err)
+    });
+  }
 
   logOut() {
     firebase.auth().signOut()
   }
 
   findUser = () => {
-
     function snapshotToArray(snapshot) {
       const returnUserArr = [];
 
@@ -84,25 +84,40 @@ class App extends Component {
     firebase.database().ref('users').on('value', (snapshot) => {
       const userArr = [];
 
-      const Firebase = snapshotToArray(snapshot).map((u) => {
-        const user = u.key
+        const Firebase = snapshotToArray(snapshot).map((u) => {
+          const user = u.key
 
-        if(user === this.state.uid) {
-          this.setState({
-            phone: u.phone,
-            fName: u.firstname,
-            lName: u.lastname
-          })
+          if(user === this.state.uid) {
+            this.setState({
+              phone: u.phone,
+              fName: u.firstname,
+              lName: u.lastname
+            })
           console.log(this.state, ' this is state after user info added')
-        } else {
+          } else {
           console.log("nope")
         }
       })  
     });
   }
 
+  register = (e) => {
+    e.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
+    .catch((err) => {
+         console.log(err);
+    })
+
+    //simulaneously, call this function to create a user
+    
+  }
+
   newUserListener = () => {
-    console.log('newUserListener function hit')
+
+    console.log(this.state, " this is state when newUserListener is called")
+
+    //if user does not exist in users database, create new user.
+
     // exports.createProfile = functions.auth.user().onCreate( event => {
     //   return firebase.database().ref('/users/' + event.data.uid).set({
     //     firstName: this.props.fNameR,
@@ -111,35 +126,8 @@ class App extends Component {
     // });
   }
 
-  login = (e) => {
-    e.preventDefault();
-    // console.log("you are trying to log in")
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
-    }).catch((err) => {
-         console.log(err)
-    });
-
-    console.log(this.state, " this is state after login")
-      //need to make a call to the firebase DB to grab user info from USERS database
-  }
-
-  register = (e) => {
-    e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
-    // console.log(this.state.emailR, " this is new user emailR")
-    // console.log(this.state.phoneR, " this is new user phoneR")
-    // console.log(this.state.fNameR, " this is new user fNameR")
-    // console.log(this.state.lNameR, " this is new user lNameR")
-    .catch((err) => {
-         console.log(err);
-    })
-
-    this.props.newUserListener();
-    //simulaneously, call another function to create a user
-    // this.props.addUser from App.js
-  }
-
   // gamesListener = () => {
+
     // if ANY GAMES === 8 users {
       //print message "Game on at " + PARK + " on " + DAY + " at " + TIME
     // } else {
@@ -156,14 +144,13 @@ class App extends Component {
   //   });
   // }
 
-// <UserPage user={this.state.user} responses={this.state.responses}/>
   render() {
     return (
       <div className="App">
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} login={this.login} newUserListener={this.newUserListener} />)}
+      {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} newUserListener={this.newUserListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
 
       </div>
     );

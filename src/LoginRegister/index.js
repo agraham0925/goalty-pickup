@@ -5,22 +5,7 @@ import firebase, { auth, provider } from '../firebase.js';
 class LoginRegister extends Component {
 	constructor() {
 		super();
-
-		// this.state = {
-		// 	email: '',
-  //              password: '',
-  //              username: '',
-  //              emailR: '',
-  //              passwordR: '',
-  //              fNameR: '',
-  //             lNameR: '',
-  //              phoneR: ''
-		// }
 	}   
-     // componentDidMount(){
-
-     // }
-
 	render() {
 		return(
 			<div>
