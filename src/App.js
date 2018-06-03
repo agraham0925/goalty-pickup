@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase.js';
-// import * as admin from "firebase-admin";
+import * as admin from "firebase-admin";
+import * as functions from "firebase-functions";
 import UserPage from './UserPage';
 import UserGameAvailability from './UserGameAvailability';
 import LoginRegister from './LoginRegister';
@@ -37,8 +38,6 @@ class App extends Component {
           uid: user.uid,
         });
         this.findUser()
-        // console.log(this.state, " this is state")
-        // console.log(this.props.lastnameR, " this is last name")
       } else {
         this.setState({user: null});
       }
@@ -67,6 +66,20 @@ class App extends Component {
     firebase.auth().signOut()
   }
 
+  getUsers() {
+    const firebaseUsers = firebase.database().ref().child("users");
+    // const usersArr = [];
+    // const users = {};
+
+    firebaseUsers.on('value', function(snapshot){
+      firebaseUsers.innerText = snapshot.val();
+      const users = firebaseUsers.innerText
+
+      console.log(users, " this is the users in firebase")
+      return users
+    });
+  }
+
   findUser = () => {
     function snapshotToArray(snapshot) {
       const returnUserArr = [];
@@ -78,6 +91,7 @@ class App extends Component {
 
         returnUserArr.push(item);
       })
+      console.log(returnUserArr, ' this is returnUserArr')
       return returnUserArr
     }
 
@@ -95,6 +109,8 @@ class App extends Component {
             })
           console.log(this.state, ' this is state after user info added')
           } else {
+
+          //create new user here?
           console.log("nope")
         }
       })  
@@ -107,40 +123,18 @@ class App extends Component {
     .catch((err) => {
          console.log(err);
     })
-
-    //simulaneously, call this function to create a user
-    
   }
 
-  newUserListener = () => {
+  //this is supposed to add new user info to the users db but does not work
 
-    console.log(this.state, " this is state when newUserListener is called")
+  // newUserListener = () => {
 
-    //if user does not exist in users database, create new user.
-
-    // exports.createProfile = functions.auth.user().onCreate( event => {
-    //   return firebase.database().ref('/users/' + event.data.uid).set({
-    //     firstName: this.props.fNameR,
-    //     lastName: this.props.lNameR
-    //   });
-    // });
-  }
-
-  // gamesListener = () => {
-
-    // if ANY GAMES === 8 users {
-      //print message "Game on at " + PARK + " on " + DAY + " at " + TIME
-    // } else {
-        // ERR HANDLING 
-  // }
-
-  // getUsers() {
-  //   const firebaseUsers = firebase.database().ref().child("users");
-
-  //   firebaseUsers.on('value', function(snapshot){
-  //     firebaseUsers.innerText = snapshot.val();
-
-  //     console.log(firebaseUsers.innerText, " this is the users in firebase")
+  //   exports.createUserAccount = functions.auth.user().onCreate((user) => {
+  //     return firebase.database().ref('/users/' + user.data.uid).set({
+  //       firstName: this.fNameR,
+  //       lastName: this.lNameR,
+  //       phone: this.phoneR
+  //     });
   //   });
   // }
 
@@ -150,7 +144,7 @@ class App extends Component {
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} newUserListener={this.newUserListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
+      {this.state.user ? (<UserGameAvailability getUsers={this.getUsers} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
 
       </div>
     );

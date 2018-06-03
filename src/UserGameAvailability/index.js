@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import firebase from '../firebase.js';
-import Modal from '..Modal';
+// import Modal from '../Modal';
 
 class UserGameAvailability extends Component {
 	constructor(props) {
@@ -42,18 +42,24 @@ class UserGameAvailability extends Component {
     		this.setState({firebaseGames: gamesArr})
 		});
 
-    	//creates new user
-		this.props.newUserListener();
-
-		// console.log(this.state, ' this is state')
+    	//calls getUsers and creates new user if doesn't exist in database
+		// this.props.newUserListener();
 	}
 
 	checkItem = (e) => {
-		//getting the value of the checkbox, which is listed as the specific game
+
+		const responses = this.state.responses
 		const park = e.currentTarget.value
 
-		//adding each game that user is available to responses state
-		this.state.responses.push(park)
+		//index value of park in responses arr
+		const index = responses.indexOf(park)
+
+		//adding/removing parks in responses array in state
+		if(responses.includes(park)) {
+			this.state.responses.splice(index, 1)
+		} else {
+			this.state.responses.push(park)
+		}	
 	}
 	hasKit = (e) => {
 
@@ -81,34 +87,34 @@ class UserGameAvailability extends Component {
 		})
 	}
 
-	displayMessage = (e) => {
-		// e.preventDefault();
-		const message = "Your game availability has been added!"
+	// displayMessage = (e) => {
+	// 	// e.preventDefault();
+	// 	const message = "Your game availability has been added!"
 
-		this.setState({message: message})
-		console.log(this.state, " this is state with message")
-	}
+	// 	this.setState({message: message})
+	// 	console.log(this.state, " this is state with message")
+	// }
 
-	showModal = () => {
-		setState({
-			modalClass: 'open'
-		})
+	// showModal = () => {
+	// 	this.setState({
+	// 		modalClass: 'open'
+	// 	})
 
-		console.log(this.state, " state showing modal")
-	}
+	// 	console.log(this.state, " state showing modal")
+	// }
 
-	hideModal = () => {
-		setState({
-			modalClass: 'closed'
-		})
+	// hideModal = () => {
+	// 	this.setState({
+	// 		modalClass: 'closed'
+	// 	})
 
-		console.log(this.state, " state hiding modal")
-	}
-
+	// 	console.log(this.state, " state hiding modal")
+	// }
+// <Modal hideModal={this.hideModal} showModal={this.state.showModal} modalClass={this.state.modalClass} />
 	render() {
 		return(
 			<div>
-				<Modal close={this.hideModal} modalClass={this.state.modalClass} />
+				
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>

@@ -1,11 +1,12 @@
 import React from 'react';
 import './style.css';
+import UserGameAvailability from '../UserGameAvailability';
 
-function Modal() {
+function Modal(props) {
 	return (
-		<div className={this.props.cssClass}>
+		<div>
 			<div className="modal">
-				{comp}
+				
 				<button className="modal-btn" onClick={this.props.close}> close </button>
 			</div>
 		</div>
