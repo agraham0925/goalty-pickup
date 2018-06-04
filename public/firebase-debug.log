@@ -1,0 +1,40 @@
+[debug] [2018-06-04T18:31:08.183Z] ----------------------------------------------------------------------
+[debug] [2018-06-04T18:31:08.188Z] Command:       /usr/local/Cellar/node/9.11.1/bin/node /usr/local/bin/firebase deploy --debug
+[debug] [2018-06-04T18:31:08.189Z] CLI Version:   3.18.5
+[debug] [2018-06-04T18:31:08.189Z] Platform:      darwin
+[debug] [2018-06-04T18:31:08.189Z] Node Version:  v9.11.1
+[debug] [2018-06-04T18:31:08.217Z] Time:          Mon Jun 04 2018 13:31:08 GMT-0500 (CDT)
+[debug] [2018-06-04T18:31:08.218Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-04T18:31:08.322Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-04T18:31:08.322Z] > authorizing via signed-in user
+[debug] [2018-06-04T18:31:08.325Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/goalty-app  
+  
+ Mon Jun 04 2018 13:31:08 GMT-0500 (CDT)
+[debug] [2018-06-04T18:31:08.716Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-04T18:31:08.717Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/goalty-app/tokens  
+  
+ Mon Jun 04 2018 13:31:08 GMT-0500 (CDT)
+[debug] [2018-06-04T18:31:09.008Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'goalty-app'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing public directory for upload...
+[debug] [2018-06-04T18:31:09.459Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/goalty-app/uploads/-LEB3I8rzinrl83enFb7?fileCount=6&message=  
+  
+ Mon Jun 04 2018 13:31:09 GMT-0500 (CDT)
+[debug] [2018-06-04T18:31:10.084Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-04T18:31:10.084Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[info] ✔  hosting: 6 files uploaded successfully
+[debug] [2018-06-04T18:31:11.152Z] [hosting] deploy completed after 1934ms
+[debug] [2018-06-04T18:31:11.153Z] >>> HTTP REQUEST POST https://deploy.firebase.com/v1/projects/goalty-app/releases  
+ { hosting: 
+   { public: 'public',
+     ignore: [ 'firebase.json', '**/.*', '**/node_modules/**' ],
+     rewrites: [ [Object] ],
+     version: '-LEB3I8rzinrl83enFb7',
+     prefix: '-LEB3I8rzinrl83enFb7/',
+     manifest: [] } } 
+ Mon Jun 04 2018 13:31:11 GMT-0500 (CDT)
+[debug] [2018-06-04T18:31:12.067Z] <<< HTTP RESPONSE 200

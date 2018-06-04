@@ -30,5 +30,6 @@ I faced a lot more challenges building this application than I thought I would g
 ## Wireframes:
 Registration and login:
 ![alt text](public/images/login.png)
+
 Voting for field pickup options page:
 ![alt text](public/images/usergameavailability.png)
