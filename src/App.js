@@ -110,7 +110,6 @@ class App extends Component {
           console.log(this.state, ' this is state after user info added')
           } else {
 
-          //create new user here?
           console.log("nope")
         }
       })  
@@ -128,11 +127,10 @@ class App extends Component {
   displaySubmitMessage = (e) => {
     this.setState({message: "Your game availability has been added!"})
 
-    console.log(this.state, " message comes up on submit - woo!")
+    console.log(this.state, " message comes up on submit!")
   }
 
   //this is supposed to add new user info to the users db but does not work
-
   // newUserListener = () => {
 
   //   exports.createUserAccount = functions.auth.user().onCreate((user) => {
