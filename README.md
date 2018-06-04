@@ -1,7 +1,7 @@
 # Goaltimate Pickup
-## This served as my final project for General Assembly's Web Development Immersive course. This app is intended to aid a group of individuals who regularly play pickup games of Goaltimate on weekends to schedule where and what time the games will occur.
+This served as my final project for General Assembly's Web Development Immersive course. This app is intended to aid a group of individuals who regularly play pickup games of Goaltimate on weekends to schedule where and what time the games will occur.
 
-This project is a work in progress.
+This project is a work in progress. I hope to convert to an express/node.js app.
 
 ## Challenges:
 I faced a lot more challenges building this application than I thought I would going into it. I chose to use Firebase for storing my data, a technology that was new to me. While the platform markets it's simplicity, the learner curve has proven to be a bit more challenging than anticipated. Some challenges that I encountered:
@@ -20,4 +20,4 @@ I faced a lot more challenges building this application than I thought I would g
 Registration and login:
 ![alt text](public/images/login.png)
 Voting for field pickup options page:
-![alt text](public/images/usergameavailabilty.png)
+![alt text](public/images/usergameavailability.png)
