@@ -125,6 +125,12 @@ class App extends Component {
     })
   }
 
+  displaySubmitMessage = (e) => {
+    this.setState({message: "Your game availability has been added!"})
+
+    console.log(this.state, " message comes up on submit - woo!")
+  }
+
   //this is supposed to add new user info to the users db but does not work
 
   // newUserListener = () => {
@@ -144,7 +150,7 @@ class App extends Component {
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability getUsers={this.getUsers} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
+      {this.state.user ? (<UserGameAvailability getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
 
       </div>
     );

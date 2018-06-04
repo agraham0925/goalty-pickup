@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import firebase from '../firebase.js';
-// import Modal from '../Modal';
 
 class UserGameAvailability extends Component {
 	constructor(props) {
@@ -8,13 +7,12 @@ class UserGameAvailability extends Component {
 		this.state = {
 			firebaseGames: [],
 			responses: [],
-			hasKit: false,
-			modalClass: 'closed'
+			hasKit: false
 		}
 	}
 
 	componentDidMount() {
-		//retrieving game data from Firebase and storing in an array
+		//retrieving game data from Firebase and storing in an arr
     	function snapshotToArray(snapshot) {
     		const returnArr = [];
 
@@ -28,7 +26,7 @@ class UserGameAvailability extends Component {
     		return returnArr
     	}
 
-    	//getting each individual game in the Games object and storing in state
+    	//getting each individual game in the Games object in Firebase and storing in state arr
     	firebase.database().ref('Games').on('value', (snapshot) => {
     			const gamesArr = [];
 
@@ -54,7 +52,7 @@ class UserGameAvailability extends Component {
 		//index value of park in responses arr
 		const index = responses.indexOf(park)
 
-		//adding/removing parks in responses array in state
+		//adding/removing parks in responses arr in state
 		if(responses.includes(park)) {
 			this.state.responses.splice(index, 1)
 		} else {
@@ -85,39 +83,17 @@ class UserGameAvailability extends Component {
 			const gamesRef = firebase.database().ref('Games');
 			gamesRef.child(parkName).child('users').update(data)
 		})
+
+		this.props.displaySubmitMessage();
 	}
 
-	// displayMessage = (e) => {
-	// 	// e.preventDefault();
-	// 	const message = "Your game availability has been added!"
-
-	// 	this.setState({message: message})
-	// 	console.log(this.state, " this is state with message")
-	// }
-
-	// showModal = () => {
-	// 	this.setState({
-	// 		modalClass: 'open'
-	// 	})
-
-	// 	console.log(this.state, " state showing modal")
-	// }
-
-	// hideModal = () => {
-	// 	this.setState({
-	// 		modalClass: 'closed'
-	// 	})
-
-	// 	console.log(this.state, " state hiding modal")
-	// }
-// <Modal hideModal={this.hideModal} showModal={this.state.showModal} modalClass={this.state.modalClass} />
 	render() {
 		return(
 			<div>
-				
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
+				<h4>Click on the park name to view address and location.</h4>
 				<form onSubmit={this.handleSubmit}>
 					<div>
 
@@ -160,7 +136,7 @@ class UserGameAvailability extends Component {
 					</div>
 
 					<div>
-						<button onClick={this.displayMessage} className="btn" >Submit</button>
+						<button className="btn" >Submit</button>
 					</div>
 				</form>
 			</div>

@@ -95,3 +95,7 @@ input[type="password"]
 .park-fields {
   margin: 10px;
 }
+
+a {
+  color: lime;
+}
