@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import firebase from '../firebase.js';
+import DisplayWeather from '../DisplayWeather';
 
 class UserGameAvailability extends Component {
 	constructor(props) {
@@ -93,7 +94,8 @@ class UserGameAvailability extends Component {
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
-				<h4>Click on the park name to view address and location.</h4>
+				<DisplayWeather />
+
 				<form onSubmit={this.handleSubmit}>
 					<div>
 
