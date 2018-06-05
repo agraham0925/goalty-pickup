@@ -46,20 +46,6 @@ class App extends Component {
 
   componentDidMount() {
     this.authListener()
-    this.getWeather()
-    
-  }
-  getWeather = async () => {
-      //apiKey
-      const apiKey = '4b832f98ae124dffb64201827180306';
-
-      //make request to weather api
-      const responseJSON = await fetch('http://api.apixu.com/v1/forecast.json?key=' + apiKey + '&q=Chicago&days=7',{
-      });
-
-      const response = await responseJSON.json();
-
-      console.log(response, ' this is the weather response')
   }
 
   handleChange = (e) => {

@@ -8,7 +8,8 @@ class UserGameAvailability extends Component {
 		this.state = {
 			firebaseGames: [],
 			responses: [],
-			hasKit: false
+			hasKit: false,
+			weatherForecast: []
 		}
 	}
 
@@ -43,7 +44,26 @@ class UserGameAvailability extends Component {
 
     	//calls getUsers and creates new user if doesn't exist in database
 		// this.props.newUserListener();
+
+		this.getWeather();
 	}
+
+	getWeather = async () => {
+      //apiKey
+      const apiKey = '4b832f98ae124dffb64201827180306';
+
+      //make request to weather api
+      const responseJSON = await fetch('http://api.apixu.com/v1/forecast.json?key=' + apiKey + '&q=Chicago&days=7',{
+      });
+
+      const response = await responseJSON.json();
+
+      const weatherForecast = response.forecast.forecastday
+
+      console.log(response.forecast.forecastday, ' this is the weather response')
+      this.setState({weatherForecast: weatherForecast})
+      console.log(this.state, " this is state with weatherForecast")
+  	}
 
 	checkItem = (e) => {
 
@@ -87,14 +107,14 @@ class UserGameAvailability extends Component {
 
 		this.props.displaySubmitMessage();
 	}
-
+// <DisplayWeather weatherForecast={this.state.weatherForecast}/>
 	render() {
 		return(
 			<div>
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
-				<DisplayWeather />
+				
 
 				<form onSubmit={this.handleSubmit}>
 					<div>
