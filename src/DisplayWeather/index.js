@@ -3,18 +3,19 @@ import './style.css';
 
 const DisplayWeather = ({weatherForecast}) => {
 	const weatherList = weatherForecast.map((day, i) => {
-
+		
+		//grabbing date property from api call
 		const theDay = day.date
 
-		// let day1 = theDay.getDay();
+		//takes date from API and changes to readable format with timestamp
+		const upDate = new Date(theDay)
 
-		const splitDay = theDay.split('-')
-
-		console.log(splitDay, " this is splitDay")
+		//removes the timestamp
+		const textDate = upDate.toDateString()
 
 		return (
 			<li className="weather" >
-				Date: {day.date} <br />
+				{textDate} <br />
 				Max Temp: {day.day.maxtemp_f} <br />
 				Humidity: {day.day.avghumidity}% <br />
 			</li>
