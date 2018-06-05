@@ -3,6 +3,15 @@ import './style.css';
 
 const DisplayWeather = ({weatherForecast}) => {
 	const weatherList = weatherForecast.map((day, i) => {
+
+		const theDay = day.date
+
+		// let day1 = theDay.getDay();
+
+		const splitDay = theDay.split('-')
+
+		console.log(splitDay, " this is splitDay")
+
 		return (
 			<li className="weather" >
 				Date: {day.date} <br />
