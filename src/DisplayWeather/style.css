@@ -1,0 +1,11 @@
+.weatherContainer {
+	display: flex;
+	flex-direction: right;
+	justify-content: center;
+}
+
+.weather {
+	border: 1px solid lime;
+	list-style: none;
+	padding: 10px;
+}
