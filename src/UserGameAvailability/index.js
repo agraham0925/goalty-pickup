@@ -107,14 +107,13 @@ class UserGameAvailability extends Component {
 
 		this.props.displaySubmitMessage();
 	}
-// <DisplayWeather weatherForecast={this.state.weatherForecast}/>
 	render() {
 		return(
 			<div>
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
-				
+				<DisplayWeather weatherForecast={this.state.weatherForecast}/>
 
 				<form onSubmit={this.handleSubmit}>
 					<div>

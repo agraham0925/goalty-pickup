@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
 
-const DisplayWeather = () => {
-	const weatherList = this.props.weatherForecast.map((day, i) => {
+const DisplayWeather = ({weatherForecast}) => {
+	const weatherList = weatherForecast.map((day, i) => {
 		return (
 			<li>
 				{day.date}
@@ -11,7 +11,7 @@ const DisplayWeather = () => {
 	})
 
 	return (
-		<h3> {weatherList} }</h3>
+		<h3> {weatherList}</h3>
 	)
 }
 
