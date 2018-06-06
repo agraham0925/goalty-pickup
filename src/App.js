@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase.js';
-import * as admin from "firebase-admin";
-import * as functions from "firebase-functions";
+// import * as functions from "firebase-functions";
 import UserPage from './UserPage';
 import UserGameAvailability from './UserGameAvailability';
 import LoginRegister from './LoginRegister';

@@ -53,16 +53,15 @@ class UserGameAvailability extends Component {
       const apiKey = '4b832f98ae124dffb64201827180306';
 
       //make request to weather api
-      const responseJSON = await fetch('http://api.apixu.com/v1/forecast.json?key=' + apiKey + '&q=Chicago&days=7',{
+      const responseJSON = await fetch('https://api.apixu.com/v1/forecast.json?key=' + apiKey + '&q=Chicago&days=7',{
       });
 
       const response = await responseJSON.json();
 
       const weatherForecast = response.forecast.forecastday
 
-      console.log(response.forecast.forecastday, ' this is the weather response')
       this.setState({weatherForecast: weatherForecast})
-      console.log(this.state, " this is state with weatherForecast")
+      // console.log(this.state, " this is state with weatherForecast")
   	}
 
 	checkItem = (e) => {
@@ -113,6 +112,7 @@ class UserGameAvailability extends Component {
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>
+				<h4>Forecasted Weather:</h4>
 				<DisplayWeather weatherForecast={this.state.weatherForecast}/>
 
 				<form onSubmit={this.handleSubmit}>

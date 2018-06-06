@@ -5,8 +5,9 @@
 }
 
 .weather {
-	border: 1px solid lime;
+	border: 4px solid white;
 	list-style: none;
 	background-color: white;
 	color: #723D99;
+	padding: 5px;
 }
