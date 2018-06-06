@@ -119,7 +119,16 @@ class App extends Component {
     e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
     .then((response) => {
+
+      //create new user in user db here
+      firebase.database().ref('/users/' + response.user.uid).set({
+        firstName: this.fNameR,
+        lastName: this.lNameR,
+        phone: this.phoneR
+      });
+
       console.log(response, ' this si data')
+      console.log(response.user.uid, ' this si data new user id')
     })
     .catch((err) => {
          console.log(err);
