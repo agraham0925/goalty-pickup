@@ -24,6 +24,7 @@ const DisplayWeather = ({weatherForecast}) => {
 						{textDate} <br />
 						Max Temp: {day.day.maxtemp_f} <br />
 						Humidity: {day.day.avghumidity}% <br />
+						{day.day.condition.text}
 					</li>
 				</div>
 				

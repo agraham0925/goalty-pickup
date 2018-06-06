@@ -61,7 +61,7 @@ class UserGameAvailability extends Component {
       const weatherForecast = response.forecast.forecastday
 
       this.setState({weatherForecast: weatherForecast})
-      // console.log(this.state, " this is state with weatherForecast")
+      console.log(this.state, " this is state with weatherForecast")
   	}
 
 	checkItem = (e) => {
@@ -118,7 +118,7 @@ class UserGameAvailability extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<div>
 
-						Revere Park:
+						<p>Revere Park:</p>
 							<input className="park-fields" type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
 							<label for="revere_1"> Saturday 12pm </label>
 							<input className="park-fields" type="checkbox" name="game" value="revere_2" onChange={this.checkItem} />
@@ -129,7 +129,7 @@ class UserGameAvailability extends Component {
 							<label for="revere_4"> Sunday 1pm </label>
 						<br />
 
-						Eckhart Park:
+						<p>Eckhart Park:</p>
 						<input className="park-fields" type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
 						<label for="eckhart_1"> Saturday 12pm </label>
 						<input className="park-fields" type="checkbox" name="game" value="eckhart_2" onChange={this.checkItem}/>
@@ -140,7 +140,7 @@ class UserGameAvailability extends Component {
 						<label for="eckhart_4"> Sunday 1pm </label>
 						<br />
 
-						Humboldt Park:
+						<p>Humboldt Park:</p>
 						<input  className="park-fields" type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
 						<label for="humboldt_1"> Saturday 12pm </label>
 						<input  className="park-fields" type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
