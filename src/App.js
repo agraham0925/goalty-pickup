@@ -118,6 +118,9 @@ class App extends Component {
   register = (e) => {
     e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
+    .then((response) => {
+      console.log(response, ' this si data')
+    })
     .catch((err) => {
          console.log(err);
     })
@@ -129,10 +132,10 @@ class App extends Component {
     console.log(this.state, " message comes up on submit!")
   }
 
-  //this is supposed to add new user info to the users db but does not work
+  // //this is supposed to add new user info to the users db but does not work
   // newUserListener = () => {
 
-  //   exports.createUserAccount = functions.auth.user().onCreate((user) => {
+  //   functions.auth.user().onCreate((user) => {
   //     return firebase.database().ref('/users/' + user.data.uid).set({
   //       firstName: this.fNameR,
   //       lastName: this.lNameR,
