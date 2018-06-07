@@ -74,7 +74,7 @@ class App extends Component {
       firebaseUsers.innerText = snapshot.val();
       const users = firebaseUsers.innerText
 
-      console.log(users, " this is the users in firebase")
+      // console.log(users, " this is the users in firebase")
       return users
     });
   }
@@ -90,7 +90,7 @@ class App extends Component {
 
         returnUserArr.push(item);
       })
-      console.log(returnUserArr, ' this is returnUserArr')
+      // console.log(returnUserArr, ' this is returnUserArr')
       return returnUserArr
     }
 
@@ -106,7 +106,7 @@ class App extends Component {
               fName: u.firstname,
               lName: u.lastname
             })
-          console.log(this.state, ' this is state after user info added')
+          // console.log(this.state, ' this is state after user info added')
           } else {
 
           console.log("nope")
@@ -120,25 +120,47 @@ class App extends Component {
     firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
     .then((response) => {
 
-      //create new user in user db here
-      firebase.database().ref('/users/' + response.user.uid).set({
-        firstName: this.fNameR,
-        lastName: this.lNameR,
-        phone: this.phoneR
-      });
-
       console.log(response, ' this si data')
       console.log(response.user.uid, ' this si data new user id')
+
+      const userId = response.user.uid;
+
+      this.setState({uid: userId})
+      console.log(this.state, " this is state after adding userid")
+      console.log(userId, " this is userId") 
     })
+    .then(() => {
+      this.writeUserData();
+    })
+
     .catch((err) => {
-         console.log(err);
+      console.log(err);
     })
+  }
+
+  writeUserData = () => {
+
+    console.log('this is writeUserData')
+    console.log(this.state, " this is state in the writeUserData")
+      const firstName = this.state.fNameR;
+      const lastName = this.state.lNameR;
+      const phone = this.state.phoneR;
+
+      const firebaseUsers = firebase.database().ref('users')
+
+    firebaseUsers.update({
+      [this.state.uid]: {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone
+      }
+    });
   }
 
   displaySubmitMessage = (e) => {
     this.setState({message: "Your game availability has been added!"})
 
-    console.log(this.state, " message comes up on submit!")
+    // console.log(this.state, " message comes up on submit!")
   }
 
   // //this is supposed to add new user info to the users db but does not work

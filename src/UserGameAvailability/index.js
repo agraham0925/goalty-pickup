@@ -61,7 +61,7 @@ class UserGameAvailability extends Component {
       const weatherForecast = response.forecast.forecastday
 
       this.setState({weatherForecast: weatherForecast})
-      console.log(this.state, " this is state with weatherForecast")
+      // console.log(this.state, " this is state with weatherForecast")
   	}
 
 	checkItem = (e) => {
