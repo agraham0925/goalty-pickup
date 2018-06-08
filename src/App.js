@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase.js';
-// import * as functions from "firebase-functions";
 import UserPage from './UserPage';
 import UserGameAvailability from './UserGameAvailability';
 import LoginRegister from './LoginRegister';
@@ -18,7 +17,7 @@ class App extends Component {
       fName: '',
       lName: '',
       password: '',
-      // this is for new user registrations
+      // these fields for new user registrations
       emailR: '',
       passwordR: '',
       fNameR: '',
@@ -74,7 +73,6 @@ class App extends Component {
       firebaseUsers.innerText = snapshot.val();
       const users = firebaseUsers.innerText
 
-      // console.log(users, " this is the users in firebase")
       return users
     });
   }
@@ -90,7 +88,7 @@ class App extends Component {
 
         returnUserArr.push(item);
       })
-      // console.log(returnUserArr, ' this is returnUserArr')
+
       return returnUserArr
     }
 
@@ -103,10 +101,10 @@ class App extends Component {
           if(user === this.state.uid) {
             this.setState({
               phone: u.phone,
-              fName: u.firstname,
-              lName: u.lastname
+              fName: u.firstName,
+              lName: u.lastName
             })
-          // console.log(this.state, ' this is state after user info added')
+            console.log(this.state, " this is state with user data")
           } else {
 
           console.log("nope")
@@ -120,14 +118,10 @@ class App extends Component {
     firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
     .then((response) => {
 
-      console.log(response, ' this si data')
-      console.log(response.user.uid, ' this si data new user id')
-
       const userId = response.user.uid;
 
       this.setState({uid: userId})
-      console.log(this.state, " this is state after adding userid")
-      console.log(userId, " this is userId") 
+
     })
     .then(() => {
       this.writeUserData();
@@ -140,13 +134,12 @@ class App extends Component {
 
   writeUserData = () => {
 
-    console.log('this is writeUserData')
-    console.log(this.state, " this is state in the writeUserData")
-      const firstName = this.state.fNameR;
-      const lastName = this.state.lNameR;
-      const phone = this.state.phoneR;
+    //adding data to the users obj with the user auth key
+    const firstName = this.state.fNameR;
+    const lastName = this.state.lNameR;
+    const phone = this.state.phoneR;
 
-      const firebaseUsers = firebase.database().ref('users')
+    const firebaseUsers = firebase.database().ref('users')
 
     firebaseUsers.update({
       [this.state.uid]: {
@@ -162,18 +155,6 @@ class App extends Component {
 
     // console.log(this.state, " message comes up on submit!")
   }
-
-  // //this is supposed to add new user info to the users db but does not work
-  // newUserListener = () => {
-
-  //   functions.auth.user().onCreate((user) => {
-  //     return firebase.database().ref('/users/' + user.data.uid).set({
-  //       firstName: this.fNameR,
-  //       lastName: this.lNameR,
-  //       phone: this.phoneR
-  //     });
-  //   });
-  // }
 
   render() {
     return (

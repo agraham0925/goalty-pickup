@@ -1,7 +1,5 @@
 # Goaltimate Pickup
-This served as my final project for General Assembly's Web Development Immersive course. This app is intended to aid a group of individuals who regularly play pickup games of Goaltimate on weekends to schedule where and what time the games will occur.
-
-This project is a work in progress. I hope to convert to an express/node.js app.
+This project served as my final project for General Assembly's Web Development Immersive course. This app is intended to aid a group of individuals who regularly play pickup games of Goaltimate on weekends to schedule where and when the games will occur.
 
 ## Challenges:
 I faced a lot more challenges building this application than I thought I would going into it. I chose to use Firebase for storing my data, a technology that was new to me. While the platform markets it's simplicity, the learner curve has proven to be a bit more challenging than anticipated. Some challenges that I encountered:
@@ -18,7 +16,7 @@ I faced a lot more challenges building this application than I thought I would g
 	⋅⋅⋅Because I was so focused on trying to accomplish the above two tasks, I ran out of time to work on the additional features that I had planned to incorporate in my app, including connection to weather API, a page to display the current status of time and location votes, and editing user information.
 
 ## What I learned:
-* Trying something new is *hard*. I bought into Firebase's self-proclaimed ease, but the reality is trying something new always has a learning curve. During this project, I felt very frustrated that I wasn't understanding this quicker. I had decided to use Firebase a day before beginning my project. In the future, I would build in research time to my project plan before committing to use something new.
+* Trying something new is *hard*. I bought into Firebase's self-proclaimed ease, but I underestimated the amount of time it would take for me to learn how to user. During this project, I felt very frustrated that I wasn't understanding this quicker. I had decided to use Firebase a day before beginning my project. In the future, I would build in research time to my project plan before committing to use something new.
 * It takes much longer to accomplish a full stack app on your own than you anticipate. The previous projects were done with partners with the same timeline, and I operated as if I had someone to share the workload with. In the future, I would better plan my time and be more realistic of what I thinkn I can accomplish.
 
 ## In the future, I would like to add:
