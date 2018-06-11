@@ -150,10 +150,8 @@ class App extends Component {
     });
   }
 
-  displaySubmitMessage = (e) => {
+  displaySubmitMessage = () => {
     this.setState({message: "Your game availability has been added!"})
-
-    // console.log(this.state, " message comes up on submit!")
   }
 
   render() {
