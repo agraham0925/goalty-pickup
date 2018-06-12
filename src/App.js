@@ -153,6 +153,15 @@ class App extends Component {
   displaySubmitMessage = () => {
     this.setState({message: "Your game availability has been added!"})
   }
+  //listening for changes to users confirming game attendance
+  childChangeListener = () => {
+    const firebaseGames = firebase.database().ref('Games')
+
+    firebaseGames.on('child_added', function(data) {
+      console.log('new child change listener activated, see following data info', data)
+      
+    })
+  }
 
   render() {
     return (
@@ -160,7 +169,7 @@ class App extends Component {
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
+      {this.state.user ? (<UserGameAvailability getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} childChangeListener={this.childChangeListener} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
 
       </div>
     );

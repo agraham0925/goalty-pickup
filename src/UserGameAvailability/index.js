@@ -105,6 +105,7 @@ class UserGameAvailability extends Component {
 		})
 
 		this.props.displaySubmitMessage();
+		this.props.childChangeListener();
 	}
 	render() {
 		return(
@@ -164,7 +165,7 @@ class UserGameAvailability extends Component {
 					</form>
 
 				}
-				
+
 			</div>
 		);
 	}
