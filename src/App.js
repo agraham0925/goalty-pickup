@@ -104,7 +104,7 @@ class App extends Component {
               fName: u.firstName,
               lName: u.lastName
             })
-            console.log(this.state, " this is state with user data")
+            // console.log(this.state, " this is state with user data")
           } else {
 
           console.log("nope")
