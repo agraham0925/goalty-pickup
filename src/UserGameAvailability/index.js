@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import firebase from '../firebase.js';
 import DisplayWeather from '../DisplayWeather';
+import GameAttendance from '../GameAttendance';
 
 class UserGameAvailability extends Component {
 	constructor(props) {
@@ -112,17 +113,24 @@ class UserGameAvailability extends Component {
 
 			<div>
 
-				{ this.props.hideVote ? <button className="btn" onClick={this.props.btnToggle}>View current poll results</button> :
+				<h3>Hi, {this.props.fName}</h3>
+				<h4>Forecasted Weather:</h4>
+				<DisplayWeather weatherForecast={this.state.weatherForecast}/>
 
-					<div className={this.props.hideVote}>
-					<button className="btn" onClick={this.props.btnToggle}>View current poll results</button>
-					<button className="btn" onClick={this.props.logOut}>Log Out</button>
-					<h3>Hi, {this.props.fName}</h3>
-					<h4>Add your availability for pickup this weekend!</h4>
-					<h4>Forecasted Weather:</h4>
-					<DisplayWeather weatherForecast={this.state.weatherForecast}/>
+				{ this.props.hideVote ? 
 
-					{ this.props.message ? "You're game availability has been added!" :
+					<div>
+						<GameAttendance btnToggle={this.props.btnToggle} /> 
+					</div>
+
+						:
+
+					<div>
+						<button className="btn" onClick={this.props.btnToggle}>View current poll results</button>
+						<button className="btn" onClick={this.props.logOut}>Log Out</button>
+						<h4>Add your availability for pickup this weekend!</h4>
+
+						{ this.props.message ? "You're game availability has been added!" :
 
 						<form onSubmit={this.handleSubmit}>
 							<div>
@@ -170,11 +178,11 @@ class UserGameAvailability extends Component {
 							</div>
 						</form>
 
-					}
+						}
 
 					</div>
 				}
-				
+
 			</div>
 			
 		);
