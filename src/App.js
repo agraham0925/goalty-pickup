@@ -18,6 +18,7 @@ class App extends Component {
       lName: '',
       password: '',
       buttonText: '',
+      hideVote: false,
       // these fields for new user registrations
       emailR: '',
       passwordR: '',
@@ -115,12 +116,13 @@ class App extends Component {
   btnToggle = () => {
 
     console.log('this button was clicked')
-    // let btn = '';
-    // if(this.state.buttonText === 'vote') {
-    //   btn = 'View current poll results' 
-    // } else {
-    //   btn = 'Add your game availability'
-    // }
+    if(this.state.hideVote === false) {
+      this.setState({hideVote: true}) 
+    } else {
+      this.setState({hideVote: false})
+    }
+
+    console.log(this.state, " this is state when button clicked")
   }
 
   register = (e) => {
@@ -195,7 +197,7 @@ class App extends Component {
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability  btnToggle={this.btnToggle} getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} childChangeListener={this.childChangeListener} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
+      {this.state.user ? (<UserGameAvailability hideVote={this.state.hideVote} btnToggle={this.btnToggle} getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} childChangeListener={this.childChangeListener} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
 
       </div>
     );

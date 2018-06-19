@@ -109,7 +109,7 @@ class UserGameAvailability extends Component {
 	}
 	render() {
 		return(
-			<div>
+			<div className={this.props.hideVote}>
 				<button className="btn" onClick={this.props.btnToggle}>View current poll results</button>
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
