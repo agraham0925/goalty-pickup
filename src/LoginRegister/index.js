@@ -9,6 +9,7 @@ class LoginRegister extends Component {
 	render() {
 		return(
 			<div>
+               <p>Login to add your availability for Goaltimate pickup this weekend! Don't have an account? Be sure to register!</p>
                     <div className="login">
                          <h2>Login</h2>
                          <h4>If you already have an account, login here:</h4>

@@ -30,7 +30,7 @@ class UserGameAvailability extends Component {
 
     	//getting each individual game in the Games object in Firebase and storing in state arr
     	firebase.database().ref('Games').on('value', (snapshot) => {
-    			const gamesArr = [];
+    		const gamesArr = [];
 
     		const gamesFirebase = snapshotToArray(snapshot).map((gameFirebase) => {
     			const game = gameFirebase.key
@@ -110,6 +110,7 @@ class UserGameAvailability extends Component {
 	render() {
 		return(
 			<div>
+				<button className="btn" onClick={this.props.btnToggle}>View current poll results</button>
 				<button className="btn" onClick={this.props.logOut}>Log Out</button>
 				<h3>Hi, {this.props.fName}</h3>
 				<h4>Add your availability for pickup this weekend!</h4>

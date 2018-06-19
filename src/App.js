@@ -17,6 +17,7 @@ class App extends Component {
       fName: '',
       lName: '',
       password: '',
+      buttonText: '',
       // these fields for new user registrations
       emailR: '',
       passwordR: '',
@@ -45,7 +46,7 @@ class App extends Component {
   componentDidMount() {
     this.authListener()
   }
-
+  //used for login/registration
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -53,7 +54,7 @@ class App extends Component {
   login = (e) => {
     e.preventDefault();
 
-    //using firebase user authentication to confirm user has account in app
+    //firebase user authentication to confirm user has account in app
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {  
     }).catch((err) => {
          console.log(err)
@@ -66,8 +67,6 @@ class App extends Component {
 
   getUsers() {
     const firebaseUsers = firebase.database().ref().child("users");
-    // const usersArr = [];
-    // const users = {};
 
     firebaseUsers.on('value', function(snapshot){
       firebaseUsers.innerText = snapshot.val();
@@ -91,7 +90,7 @@ class App extends Component {
 
       return returnUserArr
     }
-
+    //grabbing user information from database and setting in state
     firebase.database().ref('users').on('value', (snapshot) => {
       const userArr = [];
 
@@ -113,8 +112,21 @@ class App extends Component {
     });
   }
 
+  btnToggle = () => {
+
+    console.log('this button was clicked')
+    // let btn = '';
+    // if(this.state.buttonText === 'vote') {
+    //   btn = 'View current poll results' 
+    // } else {
+    //   btn = 'Add your game availability'
+    // }
+  }
+
   register = (e) => {
     e.preventDefault();
+
+    //firebase createUser method
     firebase.auth().createUserWithEmailAndPassword(this.state.emailR, this.state.passwordR)
     .then((response) => {
 
@@ -123,6 +135,7 @@ class App extends Component {
       this.setState({uid: userId})
 
     })
+    //to record add'l user data separately
     .then(() => {
       this.writeUserData();
     })
@@ -131,7 +144,7 @@ class App extends Component {
       console.log(err);
     })
   }
-
+  //to record add'l user data separately
   writeUserData = () => {
 
     //adding data to the users obj with the user auth key
@@ -157,9 +170,22 @@ class App extends Component {
   childChangeListener = () => {
     const firebaseGames = firebase.database().ref('Games')
 
-    firebaseGames.on('child_added', function(data) {
-      console.log('new child change listener activated, see following data info', data)
+     //when a child is added, check to see the length of the child 
+    firebaseGames.on('child_added', (snapshot) => {
+
+      const users = [];
       
+      const info = snapshot.val();
+
+      console.log(info, ' this is info')
+      console.log(snapshot.key, ' this is snapshot key')
+
+      // users.push(info.users)
+      // console.log(users, " this is  users array")
+
+      //get the list of users for each game
+      //find out if that games users list is at 9
+      //if at 9, create notification that game is called
     })
   }
 
@@ -169,7 +195,7 @@ class App extends Component {
       <div className="bg">
         <h1 className="transbox"> Goaltimate Pickup</h1>
       </div>
-      {this.state.user ? (<UserGameAvailability getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} childChangeListener={this.childChangeListener} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
+      {this.state.user ? (<UserGameAvailability  btnToggle={this.btnToggle} getUsers={this.getUsers} message={this.state.message} displaySubmitMessage={this.displaySubmitMessage} childChangeListener={this.childChangeListener} fName={this.state.fName} email={this.state.email} uid={this.state.uid} authListener={this.authListener} logOut={this.logOut}/>)  : (<LoginRegister handleChange={this.handleChange} register={this.register} login={this.login} />)}
 
       </div>
     );
