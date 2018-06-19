@@ -109,65 +109,74 @@ class UserGameAvailability extends Component {
 	}
 	render() {
 		return(
-			<div className={this.props.hideVote}>
-				<button className="btn" onClick={this.props.btnToggle}>View current poll results</button>
-				<button className="btn" onClick={this.props.logOut}>Log Out</button>
-				<h3>Hi, {this.props.fName}</h3>
-				<h4>Add your availability for pickup this weekend!</h4>
-				<h4>Forecasted Weather:</h4>
-				<DisplayWeather weatherForecast={this.state.weatherForecast}/>
 
-				{ this.props.message ? "You're game availability has been added!" :
+			<div>
 
-					<form onSubmit={this.handleSubmit}>
-						<div>
-	
-							<p>Revere Park:</p>
-								<input className="park-fields" type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
-								<label for="revere_1"> Saturday 12pm </label>
-								<input className="park-fields" type="checkbox" name="game" value="revere_2" onChange={this.checkItem} />
-								<label for="revere_2"> Saturday 1pm </label>
-								<input className="park-fields" type="checkbox" name="game" value="revere_3" onChange={this.checkItem} />
-								<label for="revere_3"> Sunday 12pm </label>
-								<input className="park-fields" type="checkbox" name="game" value="revere_4" onChange={this.checkItem} />
-								<label for="revere_4"> Sunday 1pm </label>
-							<br />
-	
-							<p>Eckhart Park:</p>
-							<input className="park-fields" type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
-							<label for="eckhart_1"> Saturday 12pm </label>
-							<input className="park-fields" type="checkbox" name="game" value="eckhart_2" onChange={this.checkItem}/>
-							<label for="eckhart_2"> Saturday 1pm </label>
-							<input className="park-fields" type="checkbox" name="game" value="eckhart_3" onChange={this.checkItem}/>
-							<label for="eckhart_3"> Sunday 12pm </label>
-							<input className="park-fields" type="checkbox" name="game" value="eckhart_4" onChange={this.checkItem}/>
-							<label for="eckhart_4"> Sunday 1pm </label>
-							<br />
-	
-							<p>Humboldt Park:</p>
-							<input  className="park-fields" type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
-							<label for="humboldt_1"> Saturday 12pm </label>
-							<input  className="park-fields" type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
-							<label for="humboldt_2"> Saturday 1pm </label>
-							<input  className="park-fields" type="checkbox" name="game" value="humboldt_3" onChange={this.checkItem}/>
-							<label for="humboldt_3"> Sunday 12pm </label>
-							<input  className="park-fields" type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
-							<label for="humboldt_4"> Sunday 1pm </label>
-						</div>
-	
-						<div>
-							<input  className="park-fields" type="checkbox" name="has_kit" value="has_kit" onChange={this.hasKit}/>
-							<label for="has_kit"> Check this box if you're able to bring a kit </label>
-						</div>
-	
-						<div>
-							<button className="btn" >Submit</button>
-						</div>
-					</form>
+				{ this.props.hideVote ? <button className="btn" onClick={this.props.btnToggle}>View current poll results</button> :
 
+					<div className={this.props.hideVote}>
+					<button className="btn" onClick={this.props.btnToggle}>View current poll results</button>
+					<button className="btn" onClick={this.props.logOut}>Log Out</button>
+					<h3>Hi, {this.props.fName}</h3>
+					<h4>Add your availability for pickup this weekend!</h4>
+					<h4>Forecasted Weather:</h4>
+					<DisplayWeather weatherForecast={this.state.weatherForecast}/>
+
+					{ this.props.message ? "You're game availability has been added!" :
+
+						<form onSubmit={this.handleSubmit}>
+							<div>
+	
+								<p>Revere Park:</p>
+									<input className="park-fields" type="checkbox" name="game" value="revere_1" onChange={this.checkItem} />
+									<label for="revere_1"> Saturday 12pm </label>
+									<input className="park-fields" type="checkbox" name="game" value="revere_2" onChange={this.checkItem} />
+									<label for="revere_2"> Saturday 1pm </label>
+									<input className="park-fields" type="checkbox" name="game" value="revere_3" onChange={this.checkItem} />
+									<label for="revere_3"> Sunday 12pm </label>
+									<input className="park-fields" type="checkbox" name="game" value="revere_4" onChange={this.checkItem} />
+									<label for="revere_4"> Sunday 1pm </label>
+								<br />
+	
+								<p>Eckhart Park:</p>
+								<input className="park-fields" type="checkbox" name="game" value="eckhart_1" onChange={this.checkItem}/>
+								<label for="eckhart_1"> Saturday 12pm </label>
+								<input className="park-fields" type="checkbox" name="game" value="eckhart_2" onChange={this.checkItem}/>
+								<label for="eckhart_2"> Saturday 1pm </label>
+								<input className="park-fields" type="checkbox" name="game" value="eckhart_3" onChange={this.checkItem}/>
+								<label for="eckhart_3"> Sunday 12pm </label>
+								<input className="park-fields" type="checkbox" name="game" value="eckhart_4" onChange={this.checkItem}/>
+								<label for="eckhart_4"> Sunday 1pm </label>
+								<br />
+	
+								<p>Humboldt Park:</p>
+								<input  className="park-fields" type="checkbox" name="game" value="humboldt_1" onChange={this.checkItem}/>
+								<label for="humboldt_1"> Saturday 12pm </label>
+								<input  className="park-fields" type="checkbox" name="game" value="humboldt_2" onChange={this.checkItem}/>
+								<label for="humboldt_2"> Saturday 1pm </label>
+								<input  className="park-fields" type="checkbox" name="game" value="humboldt_3" onChange={this.checkItem}/>
+								<label for="humboldt_3"> Sunday 12pm </label>
+								<input  className="park-fields" type="checkbox" name="game" value="humboldt_4" onChange={this.checkItem}/>
+								<label for="humboldt_4"> Sunday 1pm </label>
+							</div>
+	
+							<div>
+								<input  className="park-fields" type="checkbox" name="has_kit" value="has_kit" onChange={this.hasKit}/>
+								<label for="has_kit"> Check this box if you're able to bring a kit </label>
+							</div>
+	
+							<div>
+								<button className="btn" >Submit</button>
+							</div>
+						</form>
+
+					}
+
+					</div>
 				}
-
+				
 			</div>
+			
 		);
 	}
 } 
